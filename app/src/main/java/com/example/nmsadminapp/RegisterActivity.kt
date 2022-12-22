@@ -2,13 +2,13 @@ package com.example.nmsadminapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nmsadminapp.models.AdminModel
-import com.example.nmsadminapp.repo.AdminRepo
+import com.example.nmsadminapp.service.AdminService
+import com.example.nmsadminapp.utils.Helper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -42,30 +42,23 @@ class RegisterActivity : AppCompatActivity() {
                     adminPhone = txtMobile.text.toString(),
                     adminEmail = txtEmail.text.toString(),
                     adminPassword = txtPassword.text.toString(),
+                    adminConfirmPassword = txtConfirmPassword.text.toString()
                 )
                 CoroutineScope(Dispatchers.IO).launch {
-                    try {
-                        val adminRepo = AdminRepo()
-                        val response = adminRepo.registerUser(admin)
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(
-                                this@RegisterActivity,
-                                "Registered Successfully",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    } catch (ex: Exception) {
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(
-                                this@RegisterActivity,
-                                "Error : ${ex.toString()}",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                    val response = AdminService.register(admin)
+                    withContext(Dispatchers.Main) {
+                        if (response.code == 200) {
+                            Helper.showToast(this@RegisterActivity, "Registered Successfully")
+                            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                            finish()
+                        } else {
+                            val data = response.data
+                            Helper.showToast(this@RegisterActivity, data.toString())
                         }
                     }
                 }
             } else {
-                Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
+                Helper.showToast(this, "Please fill all the fields", Toast.LENGTH_LONG)
             }
         }
 
@@ -110,7 +103,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         // regex to check if the mobile number is valid
-        val regex = Regex("^[6-9]\\d{9}\$")
+        val regex = Regex("^\\d{10}\$")
         if (!regex.matches(mobile)) {
             txtMobile.error = "Please enter a valid mobile number"
             txtMobile.requestFocus()
@@ -153,47 +146,14 @@ class RegisterActivity : AppCompatActivity() {
             return false
         }
 
+        // check if the password must be 6 characters long
+        if (password.length < 6) {
+            txtPassword.error = "Password must be 6 characters long"
+            txtPassword.requestFocus()
+            return false
+        }
+
         return true
     }
 
-    // function to register user
-    private fun registerUser() {
-        // get the values from the edit texts
-        val name = txtName.text.toString()
-        val mobile = txtMobile.text.toString()
-        val email = txtEmail.text.toString()
-        val password = txtPassword.text.toString()
-
-        // create a database handler object
-        val adminRepo = AdminRepo()
-        // Coroutine Scope to handle network on main thread exception
-        CoroutineScope(Dispatchers.IO).launch {
-            // create a admin object
-            val admin = AdminModel(
-                adminName = name,
-                adminPhone = mobile,
-                adminEmail = email,
-                adminPassword = password
-            )
-            // call the register user function
-            val response = adminRepo.registerUser(admin)
-            withContext(Dispatchers.Main) {
-                Log.d("Response", response.toString())
-                Toast.makeText(
-                    this@RegisterActivity,
-                    "User registered successfully",
-                    Toast.LENGTH_SHORT
-                ).show()
-                // open the login activity
-                startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
-            }
-        }
-
-        adminRepo.registerUser(AdminModel(name, mobile, email, password))
-    }
-
-    // function to show toast message
-    private fun toast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
 }

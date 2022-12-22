@@ -1,9 +1,12 @@
 package com.example.nmsadminapp.models
 
+import com.google.gson.annotations.SerializedName
+
 data class AdminModel(
-    val adminId: String = "",
-    val adminName: String = "",
-    val adminEmail: String = "",
-    val adminPhone: String = "",
-    val adminPassword: String = "",
-    val adminImage: String = "")
+    @SerializedName("id") val adminId: String = "",
+    @SerializedName("name") val adminName: String = "",
+    @SerializedName("email") val adminEmail: String = "",
+    @SerializedName("phone") val adminPhone: String = "",
+    @SerializedName("password") val adminPassword: String = "",
+    @SerializedName("confirm_password") val adminConfirmPassword: String = "",
+    @SerializedName("image") val adminImage: String = "")

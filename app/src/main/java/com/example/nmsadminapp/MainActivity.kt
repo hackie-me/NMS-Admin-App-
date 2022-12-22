@@ -8,6 +8,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Display Admin Name in the Action Bar
+        val actionBar = supportActionBar
+        actionBar!!.title = "Welcome, Admin"
+
 
     }
 }
