@@ -1,47 +1,58 @@
 package com.example.nmsadminapp.utils
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.widget.Toast
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 
 class Helper {
     companion object{
         // Global variables
-        private const val prefName: String = "NMSAdminApp"
+        public const val prefName: String = "NMSAdminApp"
 
         // Function to Show Toast
         fun showToast(context: Context, message: String, duration: Int = Toast.LENGTH_SHORT) {
             Toast.makeText(context, message, duration).show()
         }
 
-        // Function to Store Token
-        fun storeToken(context: Context, token: String) {
-            val sharedPref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
-            with(sharedPref.edit()) {
-                putString("token", token)
-                commit()
+        // Show progress bar while API call is in progress
+        fun showProgressBar(context: Context) {
+
+        }
+
+        // Handle HTTP response codes
+        fun handleHttpResponseCode(context: Context, code: Int) {
+            when (code) {
+                HttpResponseCode.OK -> {
+                    showToast(context, "Success")
+                }
+                HttpResponseCode.UNAUTHORIZED -> {
+                    showToast(context, "Unauthorized")
+                }
+                HttpResponseCode.BAD_REQUEST -> {
+                    showToast(context, "Bad Request")
+                }
+                HttpResponseCode.NOT_FOUND -> {
+                    showToast(context, "Not Found")
+                }
+                HttpResponseCode.INTERNAL_SERVER_ERROR -> {
+                    showToast(context, "Internal Server Error")
+                }
+                HttpResponseCode.SERVICE_UNAVAILABLE -> {
+                    showToast(context, "Service Unavailable")
+                }
+                else -> {
+                    showToast(context, "Something went wrong")
+                }
             }
         }
 
-        // Function to Fetch Token
-        fun fetchToken(context: Context): String {
-            val sharedPref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
-            return sharedPref.getString("token", "")!!
-        }
 
-        // Function to Remove Token
-        fun removeToken(context: Context) {
-            val sharedPref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
-            with(sharedPref.edit()) {
-                remove("token")
-                commit()
-            }
-        }
-
-        // Function to Check if Token Exists
-        fun tokenExists(context: Context): Boolean {
-            val sharedPref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
-            return sharedPref.contains("token")
+        // FetchJson data from response
+        fun fetchTokenFromJsonData(context: Context, response: String): String?
+        {
+            val element = Gson().fromJson(response, JsonObject::class.java)
+            return element.get("token").asString
         }
 
         // Function to Store Admin
