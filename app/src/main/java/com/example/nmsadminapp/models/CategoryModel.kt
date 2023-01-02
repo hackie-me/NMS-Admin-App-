@@ -1,7 +1,10 @@
 package com.example.nmsadminapp.models
 
+import com.google.gson.annotations.SerializedName
+
 data class CategoryModel(
-    val categoryId: String,
-    val categoryName: String,
-    val categoryImage: String,
-    val categoryDescription: String)
+    @SerializedName("id") val categoryId: String = "",
+    @SerializedName("name") val categoryName: String = "",
+    @SerializedName("description") val categoryDescription: String = "",
+    @SerializedName("image") val categoryImage: String = ""
+)

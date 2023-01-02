@@ -2,19 +2,14 @@ package com.example.nmsadminapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nmsadminapp.models.AdminModel
 import com.example.nmsadminapp.service.AdminService
 import com.example.nmsadminapp.service.Authentication
 import com.example.nmsadminapp.utils.Helper
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -62,13 +57,22 @@ class LoginActivity : AppCompatActivity()
                         if (response.code == 200)
                         {
                             Helper.showToast(this@LoginActivity, "Logged In Successfully")
-                            response.data?.let { it1 -> Authentication.storeToken(this@LoginActivity, it1) }
+                            response.data?.let { it1 ->
+                                Authentication.storeToken(this@LoginActivity,
+                                    it1
+                                )
+                            }
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                             finish()
                         } else
                         {
-                            val data = response.code
-                            Helper.showAlertDialog(this@LoginActivity, "Error", data.toString())
+                            Helper.showAlertDialog(
+                                this@LoginActivity,
+                                "Error",
+                                "Invalid Credentials",
+                                "OK",
+                                "",
+                                {}) {}
                         }
                     }
                 }

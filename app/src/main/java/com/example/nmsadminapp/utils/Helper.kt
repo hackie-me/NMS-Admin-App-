@@ -1,9 +1,15 @@
 package com.example.nmsadminapp.utils
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.util.Base64
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import com.example.nmsadminapp.fragments.HomeFragment
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import java.io.ByteArrayOutputStream
 
 class Helper {
     companion object{
@@ -110,14 +116,50 @@ class Helper {
         }
 
         // Function to show alert dialog
-        fun showAlertDialog(context: Context, title: String, message: String) {
+        fun showAlertDialog(
+            context: Context,
+            title: String,
+            message: String,
+            s: String,
+            s1: String,
+            function: () -> Unit,
+            function1: () -> Unit
+        ) {
             val builder = android.app.AlertDialog.Builder(context)
             builder.setTitle(title)
             builder.setMessage(message)
-            builder.setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
+            builder.setPositiveButton(s) { _, _ ->
+                function()
+            }
+            builder.setNegativeButton(s1) { _, _ ->
+                function1()
             }
             builder.show()
         }
+
+        fun replaceFragment(supportFragmentManager: FragmentManager, homeFragment: HomeFragment, fragmentContainer: Int) {
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(fragmentContainer, homeFragment)
+            fragmentTransaction.commit()
+        }
+
+        // Function to show Error Message
+        fun showErrorMessage(context: Context, message: String) {
+            showToast(context, message)
+        }
+
+        // Function to convert image to base64
+        fun convertImageToBase64(image: ImageView): String {
+            // convert imageView to int
+            image.isDrawingCacheEnabled = true
+            image.buildDrawingCache()
+            val bitmap = image.drawingCache
+
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+            val imageBytes: ByteArray = byteArrayOutputStream.toByteArray()
+            return Base64.encodeToString(imageBytes, Base64.DEFAULT)
+        }
+
     }
 }
