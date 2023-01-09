@@ -29,7 +29,8 @@ class CategoryService {
 
         // Function to delete category
         fun delete(id: String, context: Context): ApiResponse {
-            return ApiRequest.getRequest(ApiRequest.URL_DELETE_CATEGORY + id, Helper.fetchSharedPreference(context, "token"))
+            val json = "{\"id\": \"$id\"}"
+            return ApiRequest.postRequest(ApiRequest.URL_DELETE_CATEGORY, json, Helper.fetchSharedPreference(context, "token"))
         }
     }
 }

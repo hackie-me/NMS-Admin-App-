@@ -3,6 +3,7 @@ package com.example.nmsadminapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
@@ -12,8 +13,10 @@ import com.example.nmsadminapp.R
 import com.example.nmsadminapp.models.CategoryModel
 import com.example.nmsadminapp.utils.Helper
 
-class CategoryAdapter(private val category: Array<CategoryModel>) :
-    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class CategoryAdapter(
+    private val category: Array<CategoryModel>,
+    private val clickListener: ClickListener,
+    ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,7 +24,6 @@ class CategoryAdapter(private val category: Array<CategoryModel>) :
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.category_list_item, parent, false)
-
         return ViewHolder(view)
     }
 
@@ -29,6 +31,7 @@ class CategoryAdapter(private val category: Array<CategoryModel>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val itemsViewModel = category[position]
+        holder.bind(itemsViewModel, clickListener)
 
         // sets the image to the imageview from our itemHolder class
         Glide.with(holder.itemView.context).load(itemsViewModel.categoryImage)
@@ -44,6 +47,13 @@ class CategoryAdapter(private val category: Array<CategoryModel>) :
         return category.size
     }
 
+
+    interface ClickListener {
+        fun onEditClick(category: CategoryModel)
+        fun onDeleteClick(category: CategoryModel)
+    }
+
+
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val categoryImage: ImageView = itemView.findViewById(R.id.categoryImage)
@@ -52,18 +62,12 @@ class CategoryAdapter(private val category: Array<CategoryModel>) :
         private val categoryDeleteButton: AppCompatButton =
             itemView.findViewById(R.id.deleteCategory)
 
-        init {
-            categoryEditButton.setOnClickListener {
-                // Use the data here
-                Helper.showToast(itemView.context, "Edit button clicked")
-
+        fun bind(category: CategoryModel, clickListener: ClickListener) {
+            itemView.findViewById<Button>(R.id.editCategory).setOnClickListener {
+                clickListener.onEditClick(category)
             }
-            categoryDeleteButton.setOnClickListener {
-                // Confirm delete
-                Helper.showAlertDialog(itemView.context, "Delete Category", "Are you sure you want to delete this category?", "Yes", "No", {
-                    // Delete the category
-                    Helper.showToast(itemView.context, "Category deleted")
-                }, {})
+            itemView.findViewById<Button>(R.id.deleteCategory).setOnClickListener {
+                clickListener.onDeleteClick(category)
             }
         }
     }

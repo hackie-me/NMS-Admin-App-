@@ -23,7 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CategoryTabFragment : Fragment() {
+class CategoryTabFragment : Fragment(), CategoryAdapter.ClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,15 +46,7 @@ class CategoryTabFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        activity?.let { Helper.showToast(it, "onResume") }
-        // get the view
-        val view = view
-        if (view != null) {
-            // Fetch all categories from Api
-            fetchCategories(view)
-        }else{
-            Log.d("CategoryTabFragment", "View is null")
-        }
+        fetchCategories(requireView())
     }
 
     // Fetch all categories from Api
@@ -64,16 +56,21 @@ class CategoryTabFragment : Fragment() {
             try {
                 val response = CategoryService.fetchAll(requireContext())
                 if (response.code == 200) {
-                    val categories = Gson().fromJson(response.data, Array<CategoryModel>::class.java)
+                    val categories =
+                        Gson().fromJson(response.data, Array<CategoryModel>::class.java)
                     activity?.runOnUiThread {
 
                         // if category list is empty, show the empty view
                         if (categories.isNotEmpty()) {
-                            view.findViewById<LinearLayout>(R.id.empty_category_view).visibility = View.GONE
-                            view.findViewById<RecyclerView>(R.id.categoryTabRecyclerView).visibility = View.VISIBLE
+                            view.findViewById<LinearLayout>(R.id.empty_category_view).visibility =
+                                View.GONE
+                            view.findViewById<RecyclerView>(R.id.categoryTabRecyclerView).visibility =
+                                View.VISIBLE
                         }
                         // Update the UI
-                        view.findViewById<RecyclerView>(R.id.categoryTabRecyclerView).adapter = CategoryAdapter(categories)
+                        val categoryAdapter = CategoryAdapter(categories, this@CategoryTabFragment)
+                        view.findViewById<RecyclerView>(R.id.categoryTabRecyclerView).adapter =
+                            categoryAdapter
                     }
                 } else {
                     Log.e("CategoryTabFragment", "Error fetching categories")
@@ -82,5 +79,46 @@ class CategoryTabFragment : Fragment() {
                 Log.d("Error", ex.toString())
             }
         }
+    }
+
+    // EditClickListener methods
+    override fun onEditClick(category: CategoryModel) {
+        // Navigate to the AddNewCategoryActivity
+        val intent = Intent(activity, AddNewCategoryActivity::class.java)
+
+        // Store Category data in shared preferences
+        Helper.storeSharedPreference(requireContext(), "category", Gson().toJson(category))
+        startActivity(intent)
+    }
+
+    // DeleteClickListener methods
+    override fun onDeleteClick(category: CategoryModel) {
+        // Ask for confirmation
+        Helper.showConfirmationDialog(
+            requireContext(),
+            "Delete Category",
+            "Are you sure you want to delete this category?",
+            "Yes",
+            "No",{
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        val response = CategoryService.delete(category.categoryId, requireContext())
+                        // Log category id
+                        Log.d("CategoryTabFragment", "Category id: ${category.categoryId}")
+                        if (response.code == 200) {
+                            withContext(Dispatchers.Main) {
+                                Helper.showToast(requireContext(), "Category deleted successfully")
+                                // Fetch all categories from Api
+                                fetchCategories(requireView())
+                            }
+                        } else {
+                            // Log Error Code
+                            Log.e("CategoryTabFragment", "Error deleting category: ${response.code}")
+                        }
+                    } catch (ex: Exception) {
+                        Log.d("Error", ex.toString())
+                    }
+                }
+            },{})
     }
 }
