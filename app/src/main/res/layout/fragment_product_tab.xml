@@ -1,81 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".fragments.ProductTabFragment"
-android:orientation="vertical">
-
-<!-- If There are no categories -->
-<LinearLayout
-    android:id="@+id/linearLayout"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center" >
+    tools:context=".fragments.ProductTabFragment">
 
-   <com.airbnb.lottie.LottieAnimationView
-       android:id="@+id/lttAnimationView"
-       android:layout_width="350dp"
-       android:layout_height="300dp"
-       android:layout_gravity="center"
-       app:lottie_autoPlay="true"
-       app:lottie_loop="true"
-       app:lottie_rawRes="@raw/empty_product_boxjson" />
+    <!-- If There are no categories -->
+    <LinearLayout
+        android:id="@+id/empty_product_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center"
-       android:layout_marginTop="20dp"
-       android:textFontWeight="900"
-       android:text="Add your first product to get started"
-       android:textSize="22sp" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lttAnimationView"
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/empty_product_boxjson" />
 
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center"
-       android:layout_marginTop="20dp"
-       android:text="It is easy to add products and services to your store"
-       android:textAlignment="center"
-       android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Add your first product to get started"
+            android:textFontWeight="900"
+            android:textSize="22sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="It is easy to add products and services to your store"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+    </LinearLayout>
 
-</LinearLayout>
+    <!-- If there are categories -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/productTabRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:scrollbars="vertical"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:spanCount="1" />
 
-<!-- If there are categories -->
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
-    android:background="@color/white"
-    android:visibility="gone"
-    android:id="@+id/scrollView">
-
-   <androidx.recyclerview.widget.RecyclerView
-       android:id="@+id/productTabRecyclerView"
-       android:layout_width="match_parent"
-       android:visibility="gone"
-       android:layout_height="wrap_content"/>
-
-</ScrollView>
-
-<!-- Add Category Button -->
-<Button
-    android:id="@+id/btnAddNewProduct"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:text="Add new Product"
-    app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    android:layout_marginBottom="20sp" />
+    <!-- Add Category Button -->
+    <Button
+        android:id="@+id/btnAddNewProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:text="Add new Product"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

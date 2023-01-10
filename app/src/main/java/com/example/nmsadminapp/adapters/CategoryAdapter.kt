@@ -11,19 +11,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.nmsadminapp.R
 import com.example.nmsadminapp.models.CategoryModel
-import com.example.nmsadminapp.utils.Helper
 
 class CategoryAdapter(
     private val category: Array<CategoryModel>,
     private val clickListener: ClickListener,
-    ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.category_list_item, parent, false)
+            .inflate(R.layout.rc_list_item_category, parent, false)
         return ViewHolder(view)
     }
 
