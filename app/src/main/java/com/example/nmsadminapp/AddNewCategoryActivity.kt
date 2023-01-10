@@ -30,21 +30,14 @@ class AddNewCategoryActivity : AppCompatActivity() {
 
         // Initialize the views
         initViews()
-        Helper.hasSharedPreference(this, "category").let {
-            // if the shared preference has the category data
-            // get the category data from shared preference
-            val category = Gson().fromJson(
-                Helper.fetchSharedPreference(this, "category"),
-                CategoryModel::class.java
-            )
-            // set the category data to the views
+
+        // Check if this is an update request
+        if(Helper.hasSharedPreference(this, "category")) {
+            val category = Gson().fromJson(Helper.fetchSharedPreference(this, "category"), CategoryModel::class.java)
+            catId = category.categoryId
             txtCategoryName.setText(category.categoryName)
             txtCategoryDescription.setText(category.categoryDescription)
             Glide.with(this).load(category.categoryImage).into(ivCategoryImage)
-            catId = category.categoryId
-
-            // set the text of the button to update
-            btnAddCategory.text = "Update Category"
         }
 
         // Set the click listeners
