@@ -13,9 +13,9 @@ import com.google.gson.JsonObject
 import java.io.ByteArrayOutputStream
 
 class Helper {
-    companion object{
+    companion object {
         // Global variables
-        public const val prefName: String = "NMSAdminApp"
+        const val prefName: String = "NMSAdminApp"
 
         // Function to Show Toast
         fun showToast(context: Context, message: String, duration: Int = Toast.LENGTH_SHORT) {
@@ -23,8 +23,7 @@ class Helper {
         }
 
         // FetchJson data from response
-        fun fetchTokenFromJsonData(context: Context, response: String): String?
-        {
+        fun fetchTokenFromJsonData(context: Context, response: String): String? {
             val element = Gson().fromJson(response, JsonObject::class.java)
             return element.get("token").asString
         }
@@ -81,7 +80,11 @@ class Helper {
             builder.show()
         }
 
-        fun replaceFragment(supportFragmentManager: FragmentManager, homeFragment: HomeFragment, fragmentContainer: Int) {
+        fun replaceFragment(
+            supportFragmentManager: FragmentManager,
+            homeFragment: HomeFragment,
+            fragmentContainer: Int
+        ) {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(fragmentContainer, homeFragment)
             fragmentTransaction.commit()

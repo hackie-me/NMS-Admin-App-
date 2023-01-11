@@ -57,4 +57,10 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'com.github.bumptech.glide:glide:4.14.2'
 
+    // Rounded Image View
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Floating Action Buttons
+    implementation 'com.github.clans:fab:1.6.4'
+
 }

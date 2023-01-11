@@ -1,22 +1,16 @@
 package com.example.nmsadminapp
 
 import android.content.Intent
-import android.icu.text.DateTimePatternGenerator.PatternInfo.OK
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.airbnb.lottie.LottieCompositionFactory.fromJson
 import com.example.nmsadminapp.models.AdminModel
-import com.example.nmsadminapp.service.AdminService
+import com.example.nmsadminapp.repo.AdminRepository
 import com.example.nmsadminapp.service.Authentication
 import com.example.nmsadminapp.utils.Helper
 import com.example.nmsadminapp.utils.HttpResponseCode
-import com.google.gson.Gson
-import com.google.gson.JsonElement
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -59,13 +53,14 @@ class RegisterActivity : AppCompatActivity() {
                     adminConfirmPassword = txtConfirmPassword.text.toString()
                 )
                 CoroutineScope(Dispatchers.IO).launch {
-                    val response = AdminService.register(admin)
+                    val response = AdminRepository.register(admin)
                     withContext(Dispatchers.Main) {
                         // Store token in shared preferences
                         if (response.code == HttpResponseCode.CREATED) {
                             Helper.showToast(this@RegisterActivity, "Registered Successfully")
                             response.data?.let { it1 ->
-                                Authentication.storeToken(this@RegisterActivity,
+                                Authentication.storeToken(
+                                    this@RegisterActivity,
                                     it1
                                 )
                             }

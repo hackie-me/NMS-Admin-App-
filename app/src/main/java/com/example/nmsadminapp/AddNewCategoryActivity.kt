@@ -9,7 +9,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.nmsadminapp.models.CategoryModel
-import com.example.nmsadminapp.service.CategoryService
+import com.example.nmsadminapp.repo.CategoryRepository
 import com.example.nmsadminapp.utils.Helper
 import com.google.gson.Gson
 import kotlinx.coroutines.*
@@ -32,8 +32,11 @@ class AddNewCategoryActivity : AppCompatActivity() {
         initViews()
 
         // Check if this is an update request
-        if(Helper.hasSharedPreference(this, "category")) {
-            val category = Gson().fromJson(Helper.fetchSharedPreference(this, "category"), CategoryModel::class.java)
+        if (Helper.hasSharedPreference(this, "category")) {
+            val category = Gson().fromJson(
+                Helper.fetchSharedPreference(this, "category"),
+                CategoryModel::class.java
+            )
             catId = category.categoryId
             txtCategoryName.setText(category.categoryName)
             txtCategoryDescription.setText(category.categoryDescription)
@@ -103,7 +106,7 @@ class AddNewCategoryActivity : AppCompatActivity() {
                 categoryImage = categoryImage
             )
             CoroutineScope(Dispatchers.IO).launch {
-                val response = CategoryService.add(categoryModal, this@AddNewCategoryActivity)
+                val response = CategoryRepository.add(categoryModal, this@AddNewCategoryActivity)
                 withContext(Dispatchers.Main) {
                     if (response.code == 201) {
                         Helper.showToast(this@AddNewCategoryActivity, "Category added successfully")
@@ -133,7 +136,7 @@ class AddNewCategoryActivity : AppCompatActivity() {
                 categoryImage = categoryImage
             )
             CoroutineScope(Dispatchers.IO).launch {
-                val response = CategoryService.update(categoryModal, this@AddNewCategoryActivity)
+                val response = CategoryRepository.update(categoryModal, this@AddNewCategoryActivity)
                 withContext(Dispatchers.Main) {
                     if (response.code == 204) {
                         Helper.showToast(

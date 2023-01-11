@@ -1,4 +1,4 @@
-package com.example.nmsadminapp.service
+package com.example.nmsadminapp.repo
 
 import android.content.Context
 import com.example.nmsadminapp.models.ProductModel
@@ -7,7 +7,7 @@ import com.example.nmsadminapp.utils.api.ApiRequest
 import com.example.nmsadminapp.utils.api.ApiResponse
 import com.google.gson.Gson
 
-class ProductService {
+class ProductRepository {
     companion object {
         // Function to fetch all products
         fun fetchAll(context: Context): ApiResponse {

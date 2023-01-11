@@ -1,13 +1,20 @@
 package com.example.nmsadminapp
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.nmsadminapp.models.ProductModel
+import com.example.nmsadminapp.repo.ProductRepository
+import com.example.nmsadminapp.utils.Helper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AddNewProductActivity : AppCompatActivity() {
 
@@ -17,16 +24,16 @@ class AddNewProductActivity : AppCompatActivity() {
     private lateinit var productPrice: EditText
     private lateinit var productMrp: EditText
     private lateinit var productDiscount: EditText
-    private lateinit var productQuantity: EditText
+    private lateinit var productStock: EditText
     private lateinit var productBrandName: EditText
     private lateinit var productExpiryDate: EditText
     private lateinit var productIngredients: EditText
     private lateinit var productThumbnail: ImageView
     private lateinit var productImagesRecyclerView: RecyclerView
-
     private lateinit var btnAddProduct: Button
     private lateinit var btnSelectMultipleImages: Button
     private lateinit var btnSelectThumbnail: Button
+    private val arr = ArrayList<Uri>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +51,14 @@ class AddNewProductActivity : AppCompatActivity() {
         // Set on click listener on Images
         btnSelectMultipleImages.setOnClickListener {
             // Open the gallery
-            selectMultipleImages()
+            // selectMultipleImages()
+            // TODO:: Add the images to the recycler view
+        }
+
+        // Set on click listener on Add Product
+        btnAddProduct.setOnClickListener {
+            // Add the product to the database
+            addNewProduct()
         }
     }
 
@@ -55,7 +69,7 @@ class AddNewProductActivity : AppCompatActivity() {
         productPrice = findViewById(R.id.product_price)
         productMrp = findViewById(R.id.product_mrp)
         productDiscount = findViewById(R.id.product_discount)
-        productQuantity = findViewById(R.id.product_quantity)
+        productStock = findViewById(R.id.product_quantity)
         productBrandName = findViewById(R.id.product_brand_name)
         productExpiryDate = findViewById(R.id.product_expiry_date)
         productIngredients = findViewById(R.id.product_ingredients)
@@ -90,8 +104,8 @@ class AddNewProductActivity : AppCompatActivity() {
                 productDiscount.error = "Please Enter Product Discount"
                 false
             }
-            productQuantity.text.toString().isEmpty() -> {
-                productQuantity.error = "Please Enter Product Quantity"
+            productStock.text.toString().isEmpty() -> {
+                productStock.error = "Please Enter Product Quantity"
                 false
             }
             productBrandName.text.toString().isEmpty() -> {
@@ -116,6 +130,50 @@ class AddNewProductActivity : AppCompatActivity() {
         if (!validateData()) {
             return
         }
+
+        // static image array
+        val arr = arrayListOf(
+            "image 1",
+            "image 2",
+            "image 3",
+        )
+
+        val productModel = ProductModel(
+            productName = productName.text.toString(),
+            productDescription = productDescription.text.toString(),
+            productPrice = productPrice.text.toString(),
+            productMrp = productMrp.text.toString(),
+            productDiscount = productDiscount.text.toString(),
+            productBrandName = productBrandName.text.toString(),
+            productExpiryDate = productExpiryDate.text.toString(),
+            productThumbnail = "image 1",
+            productImages = arr,
+            productIngredients = productIngredients.text.toString(),
+            productStatus = "active",
+            productUnit = "kg",
+            productStock = productStock.text.toString(),
+            productCategoryId = "1",
+        )
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = ProductRepository.add(productModel, this@AddNewProductActivity)
+                with(Dispatchers.Main) {
+                    if (response.code == 201) {
+                        Helper.showToast(this@AddNewProductActivity, "Product Added Successfully")
+                        finish()
+                    } else {
+                        Log.d("Response", response.message.toString())
+                        Helper.showToast(
+                            this@AddNewProductActivity,
+                            "Error Occurred : ${response.message}"
+                        )
+                    }
+                }
+            } catch (ex: Exception) {
+                Log.d("Error", ex.toString())
+            }
+        }
     }
 
     // Function to select multiple images
@@ -124,7 +182,8 @@ class AddNewProductActivity : AppCompatActivity() {
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1)
+        startActivityForResult(Intent.createChooser(intent, "Select Multiple Pictures"), 1)
+        Log.i("Multiple Images", "Images clicked")
     }
 
     // Function to select thumbnail image
@@ -136,25 +195,26 @@ class AddNewProductActivity : AppCompatActivity() {
     }
 
     // Function to handle the result of the activity
+    // TODO: Handle multiple upload images and send to API
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-            if (data.clipData != null) {
+        Log.i("Result", "Result received")
+        if (resultCode == RESULT_OK && requestCode == 1) {
+            if (data?.clipData != null) {
                 val count = data.clipData!!.itemCount
                 for (i in 0 until count) {
                     val imageUri = data.clipData!!.getItemAt(i).uri
-                    Glide.with(this).load(imageUri).into(productThumbnail)
+                    arr.add(imageUri)
+                    Log.d("Image List", "onActivityResult: {$imageUri.toString()}")
                 }
-            } else if (data.data != null) {
-                val imageUri = data.data
-                Glide.with(this).load(imageUri).into(productThumbnail)
+            } else {
+                val imageUri = data?.data
+                arr.add(imageUri!!)
+                Log.d("Image List else", "onActivityResult: {$imageUri.toString()}")
             }
-        }
-        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
-            if (data.data != null) {
-                Glide.with(this).load(data.data).into(productThumbnail)
-            }
+        } else {
+            Log.i("Result", "Result not received")
         }
     }
 }

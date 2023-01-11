@@ -17,7 +17,7 @@
 
     <item
         android:id="@+id/bottom_navigation_manage"
-        android:icon="@drawable/ic_baseline_layers_24"
+        android:icon="@drawable/ic_baseline_precision_manufacturing_24"
         android:title="Manage" />
 
     <item

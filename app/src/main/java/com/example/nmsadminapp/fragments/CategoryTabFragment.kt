@@ -15,7 +15,7 @@ import com.example.nmsadminapp.AddNewCategoryActivity
 import com.example.nmsadminapp.R
 import com.example.nmsadminapp.adapters.CategoryAdapter
 import com.example.nmsadminapp.models.CategoryModel
-import com.example.nmsadminapp.service.CategoryService
+import com.example.nmsadminapp.repo.CategoryRepository
 import com.example.nmsadminapp.utils.Helper
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
@@ -54,7 +54,7 @@ class CategoryTabFragment : Fragment(), CategoryAdapter.ClickListener {
     private fun fetchCategories(view: View) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = CategoryService.fetchAll(requireContext())
+                val response = CategoryRepository.fetchAll(requireContext())
                 if (response.code == 200) {
                     val categories =
                         Gson().fromJson(response.data, Array<CategoryModel>::class.java)
@@ -99,10 +99,11 @@ class CategoryTabFragment : Fragment(), CategoryAdapter.ClickListener {
             "Delete Category",
             "Are you sure you want to delete this category?",
             "Yes",
-            "No",{
+            "No", {
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
-                        val response = CategoryService.delete(category.categoryId, requireContext())
+                        val response =
+                            CategoryRepository.delete(category.categoryId, requireContext())
                         // Log category id
                         Log.d("CategoryTabFragment", "Category id: ${category.categoryId}")
                         if (response.code == 200) {
@@ -113,12 +114,15 @@ class CategoryTabFragment : Fragment(), CategoryAdapter.ClickListener {
                             }
                         } else {
                             // Log Error Code
-                            Log.e("CategoryTabFragment", "Error deleting category: ${response.code}")
+                            Log.e(
+                                "CategoryTabFragment",
+                                "Error deleting category: ${response.code}"
+                            )
                         }
                     } catch (ex: Exception) {
                         Log.d("Error", ex.toString())
                     }
                 }
-            },{})
+            }, {})
     }
 }
