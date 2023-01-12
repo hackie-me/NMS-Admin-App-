@@ -4,10 +4,12 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.util.Base64
+import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.example.nmsadminapp.fragments.HomeFragment
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import java.io.ByteArrayOutputStream
@@ -119,6 +121,31 @@ class Helper {
                 function1()
             }
             builder.show()
+        }
+
+        // Function to Decode JWT Token
+        fun decodeJWTToken(token: String): String {
+            val split = token.split(".")
+            val payload = split[1]
+            val decoded = Base64.decode(payload, Base64.DEFAULT)
+            return String(decoded)
+        }
+
+        // Function to fetch user id from JWT Token
+        fun getDataFromToken(context: Context, value: String): String? {
+            return Gson().fromJson(
+                Helper.decodeJWTToken(
+                    Helper.fetchSharedPreference(
+                        context,
+                        "token"
+                    )
+                ), JsonObject::class.java
+            ).getAsJsonObject("data")?.get(value)?.asString
+        }
+
+        // Function to show snackbar
+        fun showSnackBar(view: View, message: String) {
+            Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
         }
     }
 }

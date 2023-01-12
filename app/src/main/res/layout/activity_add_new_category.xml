@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    Enter category Description -->
+    <!--    Enter category Description -->
     <EditText
         android:id="@+id/etCategoryDescription"
         android:layout_width="0dp"
@@ -60,7 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAddCategory" />
 
-<!--    Select Button from storage -->
+    <!--    Select Button from storage -->
     <Button
         android:id="@+id/btnSelectImage"
         android:layout_width="wrap_content"
@@ -87,7 +87,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSelectImage"
         app:layout_constraintVertical_bias="0.0" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

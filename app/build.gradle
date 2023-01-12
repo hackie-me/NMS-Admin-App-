@@ -63,4 +63,7 @@ dependencies {
     // Floating Action Buttons
     implementation 'com.github.clans:fab:1.6.4'
 
+    // Decode JWT
+    implementation 'com.auth0.android:jwtdecode:2.0.2'
+
 }

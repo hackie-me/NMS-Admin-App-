@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
@@ -27,9 +26,9 @@
                 android:id="@+id/categoryImage"
                 android:layout_width="125sp"
                 android:layout_height="125sp"
+                android:contentDescription="category Image"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_baseline_home_24"
-                android:contentDescription="category Image" />
+                android:src="@drawable/ic_baseline_home_24" />
 
             <TextView
                 android:id="@+id/category_name"
@@ -54,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="2sp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/colorSecondary"
+                    android:backgroundTint="@color/color_secondary"
                     android:text="Edit"
                     android:textColor="@color/black"
                     android:textSize="11sp" />
@@ -65,10 +64,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="2sp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/colorError"
-                    android:textColor="@color/white"
+                    android:backgroundTint="@color/color_error"
                     android:text="Delete"
-                    android:textSize="11sp"/>
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
 
             </LinearLayout>
 

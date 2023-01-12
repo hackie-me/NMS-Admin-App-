@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".fragments.HomeFragment"
     tools:ignore="HardcodedText">
@@ -251,61 +251,58 @@
                     android:textSize="30sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 
-    <!-- Floating Action Button -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom|start"
-        android:orientation="vertical">
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="26dp"
+        app:fab_progress="0"
+        app:fab_progress_indeterminate="false"
+        app:fab_progress_max="100"
+        app:menu_animationDelayPerItem="50"
+        app:menu_buttonSpacing="0dp"
+        app:menu_colorNormal="@color/color_primary"
+        app:menu_colorPressed="@color/color_blue"
+        app:menu_colorRipple="@color/white"
+        app:menu_icon="@drawable/ic_baseline_add_24"
+        app:menu_labels_colorRipple="@color/color_accent"
+        app:menu_labels_ellipsize="end"
+        app:menu_labels_maxLines="1"
+        app:menu_labels_singleLine="true"
+        app:menu_labels_textColor="@color/white">
 
-        <com.github.clans.fab.FloatingActionMenu
-            android:id="@+id/menu"
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            app:fab_progress="0"
-            app:fab_progress_backgroundColor="#4D000000"
-            app:fab_progress_color="#FF009688"
-            app:fab_progress_indeterminate="false"
-            app:fab_progress_max="100"
-            app:fab_progress_showBackground="true"
-            app:menu_animationDelayPerItem="50"
-            app:menu_buttonSpacing="0dp"
-            app:menu_icon="@drawable/ic_baseline_add_24"
-            app:menu_labels_ellipsize="end"
-            app:menu_labels_maxLines="1"
-            app:menu_labels_singleLine="true">
+            android:src="@drawable/ic_baseline_add_24"
+            app:fab_colorNormal="@color/color_blue_light"
+            app:fab_label="Option 1"
+            app:fab_size="mini" />
 
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/fab1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_add_24"
-                app:fab_label="Option 1"
-                app:fab_size="mini" />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_settings_24"
+            app:fab_colorNormal="@color/color_blue_light"
+            app:fab_label="Option 2"
+            app:fab_size="mini" />
 
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/fab2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_settings_24"
-                app:fab_label="Option 2"
-                app:fab_size="mini" />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_camera_alt_24"
+            app:fab_colorNormal="@color/color_blue_light"
+            app:fab_label="Option 3"
+            app:fab_size="mini" />
 
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/fab3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_camera_alt_24"
-                app:fab_label="Option 3"
-                app:fab_size="mini" />
-
-        </com.github.clans.fab.FloatingActionMenu>
-
-
-    </LinearLayout>
+    </com.github.clans.fab.FloatingActionMenu>
 
 </LinearLayout>

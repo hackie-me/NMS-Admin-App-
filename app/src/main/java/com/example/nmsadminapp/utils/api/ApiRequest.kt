@@ -6,11 +6,11 @@ import okhttp3.RequestBody.Companion.toRequestBody
 
 class ApiRequest {
     companion object {
-        // Base URL
+
         // TODO: Change this to your own server URL
         // private const val BASE_URL = "http://192.168.56.1/nms/api/" // College IP
-        private const val BASE_URL = "http://192.168.1.2/nms/api/" // Home IP
-        // private const val BASE_URL = "https://hardik.works/nms/api/" // Personal IP
+        // private const val BASE_URL = "http://192.168.1.2/nms/api/" // Home IP
+        private const val BASE_URL = "https://hardik.works/nms/api/" // Personal IP
 
         // Endpoints for Handling Admin
         const val URL_REGISTER = "${BASE_URL}admin/register.php"
@@ -62,28 +62,34 @@ class ApiRequest {
 
         // Method to send get request
         fun getRequest(url: String, token: String? = null): ApiResponse {
-            return if (token == null){
-                send(Request.Builder()
-                    .url(url)
-                    .build())
+            return if (token == null) {
+                send(
+                    Request.Builder()
+                        .url(url)
+                        .build()
+                )
             } else {
-                send(Request.Builder()
-                    .url(url)
-                    .addHeader("Authorization", "Bearer $token")
-                    .build())
+                send(
+                    Request.Builder()
+                        .url(url)
+                        .addHeader("Authorization", "Bearer $token")
+                        .build()
+                )
             }
         }
 
         // Method to send post request
         fun postRequest(url: String, body: String, token: String? = null): ApiResponse {
-            return if (token == null){
+            return if (token == null) {
                 send(Request.Builder().url(url).post(body.toRequestBody()).build())
-            }else{
-                send(Request.Builder()
-                    .url(url)
-                    .post(body.toRequestBody())
-                    .addHeader("Authorization", "Bearer $token")
-                    .build())
+            } else {
+                send(
+                    Request.Builder()
+                        .url(url)
+                        .post(body.toRequestBody())
+                        .addHeader("Authorization", "Bearer $token")
+                        .build()
+                )
             }
         }
 

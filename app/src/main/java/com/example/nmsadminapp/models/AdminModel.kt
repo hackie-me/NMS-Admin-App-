@@ -9,4 +9,5 @@ data class AdminModel(
     @SerializedName("phone") val adminPhone: String = "",
     @SerializedName("password") val adminPassword: String = "",
     @SerializedName("confirm_password") val adminConfirmPassword: String = "",
-    @SerializedName("image") val adminImage: String = "")
+    @SerializedName("image") val adminImage: String = "https://i.pravatar.cc/150"
+)

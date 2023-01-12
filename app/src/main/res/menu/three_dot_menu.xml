@@ -1,43 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/three_dot_menu_item_logout"
-        android:title="Logout"/>
+        android:title="Logout" />
 
     <item
         android:id="@+id/three_dot_menu_item_about"
-        android:title="About"/>
-
-    <item
-        android:id="@+id/three_dot_menu_item_help"
-        android:title="Help"/>
-
-    <item
-        android:id="@+id/three_dot_menu_item_exit"
-        android:title="Exit"/>
-
-    <item
-        android:id="@+id/three_dot_menu_item_share"
-        android:title="Share"/>
-
-    <item
-        android:id="@+id/three_dot_menu_item_rate"
-        android:title="Rate"/>
-
-    <item
-        android:id="@+id/three_dot_menu_item_feedback"
-        android:title="Feedback"/>
+        android:title="About" />
 
     <item
         android:id="@+id/three_dot_menu_item_privacy_policy"
-        android:title="Privacy"/>
+        android:title="Privacy" />
 
     <item
         android:id="@+id/action_terms"
-        android:title="Terms"/>
+        android:title="Terms" />
 
-    <item
-        android:id="@+id/action_contact"
-        android:title="Contact"/>
 </menu>

@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="2sp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/colorSecondary"
+                    android:backgroundTint="@color/color_secondary"
                     android:text="Edit"
                     android:textColor="@color/black"
                     android:textSize="11sp" />
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="2sp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/colorError"
+                    android:backgroundTint="@color/color_error"
                     android:text="Delete"
                     android:textColor="@color/white"
                     android:textSize="11sp" />
