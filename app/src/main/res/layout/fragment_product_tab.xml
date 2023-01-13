@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".fragments.ProductTabFragment">
+<!--    SOME CHANGECE-->
 
     <!-- If There are no categories -->
     <LinearLayout

@@ -32,12 +32,12 @@ class ProductTabFragment : Fragment() {
 
         val productArray: Array<ProductModel> = arrayOf(
             ProductModel(
-                productName = "Hardol",
+                productName = "Product 1",
                 productPrice = "145",
                 productThumbnail = "https://picsum.photos/200"
             ),
             ProductModel(
-                productName = "Hardol",
+                productName = "Product 2",
                 productPrice = "145",
                 productThumbnail = "https://picsum.photos/200"
             ),
