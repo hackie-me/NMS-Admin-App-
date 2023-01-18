@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.example.nmsadminapp.fragments.HomeFragment
+import com.example.nmsadminapp.service.Authentication
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -135,10 +136,7 @@ class Helper {
         fun getDataFromToken(context: Context, value: String): String? {
             return Gson().fromJson(
                 Helper.decodeJWTToken(
-                    Helper.fetchSharedPreference(
-                        context,
-                        "token"
-                    )
+                    Authentication.getToken(context)!!
                 ), JsonObject::class.java
             ).getAsJsonObject("data")?.get(value)?.asString
         }

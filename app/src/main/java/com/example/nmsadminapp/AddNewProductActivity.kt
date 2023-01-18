@@ -4,17 +4,20 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nmsadminapp.models.CategoryModel
 import com.example.nmsadminapp.models.ProductModel
+import com.example.nmsadminapp.repo.CategoryRepository
 import com.example.nmsadminapp.repo.ProductRepository
 import com.example.nmsadminapp.utils.Helper
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AddNewProductActivity : AppCompatActivity() {
 
@@ -42,6 +45,7 @@ class AddNewProductActivity : AppCompatActivity() {
 
         // Init views
         initializeViews()
+        displayCategoryList()
 
         // Set on click listener on thumbnail
         btnSelectThumbnail.setOnClickListener {
@@ -195,11 +199,9 @@ class AddNewProductActivity : AppCompatActivity() {
     }
 
     // Function to handle the result of the activity
-    // TODO: Handle multiple upload images and send to API
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.i("Result", "Result received")
         if (resultCode == RESULT_OK && requestCode == 1) {
             if (data?.clipData != null) {
                 val count = data.clipData!!.itemCount
@@ -208,13 +210,39 @@ class AddNewProductActivity : AppCompatActivity() {
                     arr.add(imageUri)
                     Log.d("Image List", "onActivityResult: {$imageUri.toString()}")
                 }
-            } else {
-                val imageUri = data?.data
-                arr.add(imageUri!!)
-                Log.d("Image List else", "onActivityResult: {$imageUri.toString()}")
             }
         } else {
             Log.i("Result", "Result not received")
+        }
+    }
+
+    // Function to Display category list in Spinner
+    private fun displayCategoryList() {
+        val productCategory = findViewById<Spinner>(R.id.product_category_spinner)
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = CategoryRepository.fetchAll(this@AddNewProductActivity)
+                if (response.code == 200) {
+                    val gson = Gson()
+                    val jsonArray = response.data
+                    val type = object : TypeToken<List<CategoryModel>>() {}.type
+                    val items: List<CategoryModel> = gson.fromJson(jsonArray, type)
+
+                    withContext(Dispatchers.Main) {
+                        val adapter = ArrayAdapter(
+                            this@AddNewProductActivity,
+                            android.R.layout.simple_spinner_item,
+                            items.map { it.categoryName }
+                        )
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        productCategory.adapter = adapter
+                    }
+                } else {
+                    Log.d("Response", response.message.toString())
+                }
+            } catch (ex: Exception) {
+                Log.d("Error", ex.toString())
+            }
         }
     }
 }

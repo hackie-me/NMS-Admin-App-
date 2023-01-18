@@ -33,5 +33,14 @@ class Authentication(
             val sharedPref = context.getSharedPreferences(Helper.prefName, Context.MODE_PRIVATE)
             return sharedPref.getString("token", null)
         }
+
+        // Function to Clear Token
+        fun clearToken(context: Context) {
+            val sharedPref = context.getSharedPreferences(Helper.prefName, Context.MODE_PRIVATE)
+            with(sharedPref.edit()) {
+                remove("token")
+                commit()
+            }
+        }
     }
 }

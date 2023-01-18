@@ -26,5 +26,10 @@ class AdminRepository {
         fun fetch(token: String): ApiResponse {
             return ApiRequest.getRequest(ApiRequest.URL_FETCH_ADMIN, token)
         }
+
+        // Function to refresh token
+        fun refreshToken(token: String): ApiResponse {
+            return ApiRequest.postRequest(ApiRequest.URL_REFRESH_TOKEN, "", token)
+        }
     }
 }

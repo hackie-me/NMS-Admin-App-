@@ -58,12 +58,10 @@ class RegisterActivity : AppCompatActivity() {
                         // Store token in shared preferences
                         if (response.code == HttpResponseCode.CREATED) {
                             Helper.showToast(this@RegisterActivity, "Registered Successfully")
-                            response.data?.let { it1 ->
-                                Authentication.storeToken(
-                                    this@RegisterActivity,
-                                    it1
-                                )
-                            }
+                            Authentication.storeToken(
+                                this@RegisterActivity,
+                                response.data!!
+                            )
                             startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
                             finish()
                         } else {

@@ -30,8 +30,19 @@ class LoginActivity : AppCompatActivity() {
 
         // if already logged in, redirect to main activity
         if (Authentication.isLoggedIn(this)) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            // Fetch New Token from API
+            CoroutineScope(Dispatchers.IO).launch {
+                val repository = AdminRepository()
+                val response =
+                    AdminRepository.refreshToken(Authentication.getToken(this@LoginActivity)!!)
+                if (response.code == 200) {
+                    Authentication.storeToken(this@LoginActivity, response.data!!.toString())
+                    withContext(Dispatchers.Main) {
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        finish()
+                    }
+                }
+            }
         }
 
         // initialize variables
@@ -52,12 +63,10 @@ class LoginActivity : AppCompatActivity() {
                         // Store token in shared preferences
                         if (response.code == 200) {
                             Helper.showToast(this@LoginActivity, "Logged In Successfully")
-                            response.data?.let { it1 ->
-                                Authentication.storeToken(
-                                    this@LoginActivity,
-                                    it1
-                                )
-                            }
+                            Authentication.storeToken(
+                                this@LoginActivity,
+                                response.data!!
+                            )
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                             finish()
                         } else {
@@ -87,7 +96,6 @@ class LoginActivity : AppCompatActivity() {
         btnGoogle.setOnClickListener {
             // TODO: Add Google sign in
         }
-
     }
 
     // function to initialize the variables

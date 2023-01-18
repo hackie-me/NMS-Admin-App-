@@ -26,6 +26,10 @@ class AccountFragment : Fragment() {
     private lateinit var tvPrivacyPolicy: TextView
     private lateinit var tvAboutUs: TextView
     private lateinit var tvFAQ: TextView
+    private lateinit var adminName: String
+    private lateinit var adminEmail: String
+    private lateinit var adminPhone: String
+    private lateinit var adminProfile: String
 
 
     override fun onCreateView(
@@ -42,20 +46,6 @@ class AccountFragment : Fragment() {
 
         // initialize values
         init()
-
-        // convert json string to json object
-        val adminName = Helper.getDataFromToken(requireContext(), "name")
-        val adminProfile = Helper.getDataFromToken(requireContext(), "image")
-        val adminEmail = Helper.getDataFromToken(requireContext(), "email")
-        val adminPhone = Helper.getDataFromToken(requireContext(), "phone")
-
-        // set admin name
-        tvName.text = "Hi, $adminName"
-
-        // set Admin profile picture
-        Glide.with(requireContext())
-            .load(adminProfile)
-            .into(ivProfilePicture)
 
         /*----- set Click listeners -----*/
         // Edit profile
@@ -94,6 +84,23 @@ class AccountFragment : Fragment() {
             Helper.showToast(requireContext(), "Logged out successfully")
             startActivity(Intent(requireContext(), LoginActivity::class.java), null)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // convert json string to json object
+        adminName = Helper.getDataFromToken(requireContext(), "name")!!
+        adminProfile = Helper.getDataFromToken(requireContext(), "image")!!
+        adminEmail = Helper.getDataFromToken(requireContext(), "email")!!
+        adminPhone = Helper.getDataFromToken(requireContext(), "phone")!!
+
+        // set admin name
+        tvName.text = "Hi, $adminName"
+
+        // set Admin profile picture
+        Glide.with(requireContext())
+            .load(adminProfile)
+            .into(ivProfilePicture)
     }
 
     // Function to Initialize values

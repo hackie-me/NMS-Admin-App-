@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.nmsadminapp.models.CategoryModel
 import com.example.nmsadminapp.repo.CategoryRepository
+import com.example.nmsadminapp.utils.HandlePermissions
 import com.example.nmsadminapp.utils.Helper
 import com.google.gson.Gson
 import kotlinx.coroutines.*
@@ -54,6 +55,9 @@ class AddNewCategoryActivity : AppCompatActivity() {
         btnCancel = findViewById(R.id.btnCancel)
         ivCategoryImage = findViewById(R.id.ivCategoryImage)
         btnSelectImage = findViewById(R.id.btnSelectImage)
+
+        // get permission to access the gallery
+        HandlePermissions.checkAndRequestPermissions(this)
     }
 
     private fun setClickListeners() {
@@ -94,6 +98,12 @@ class AddNewCategoryActivity : AppCompatActivity() {
     private fun addNewCategory() {
         val categoryName = txtCategoryName.text.toString()
         val categoryDescription = txtCategoryDescription.text.toString()
+
+        // check if the image is selected or not
+        if (ivCategoryImage.drawable == null) {
+            Helper.showToast(this, "Please select an image")
+            return
+        }
 
         // Convert the image to base64
         var categoryImage = Helper.convertImageToBase64(ivCategoryImage)

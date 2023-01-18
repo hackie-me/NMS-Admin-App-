@@ -1,155 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddNewProductActivity">
+    tools:context=".AddNewProductActivity"
+    tools:ignore="TextContrastCheck, ContentDescription, HardcodedText, TouchTargetSizeCheck">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="Insert Product"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/product_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:minHeight="48dp" />
+
+        <Spinner
+            android:id="@+id/product_category_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:gravity="center"
-                android:text="Insert Product"
-                android:textSize="24sp" />
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <EditText
-                android:id="@+id/product_name"
-                android:layout_width="match_parent"
+                android:id="@+id/product_price"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Name" />
+                android:layout_weight="1"
+                android:hint="Price"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
             <EditText
-                android:id="@+id/product_description"
-                android:layout_width="match_parent"
+                android:id="@+id/product_mrp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Description"
-                android:inputType="textMultiLine" />
+                android:layout_weight="1"
+                android:hint="MRP"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                tools:ignore="TouchTargetSizeCheck" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
+        </LinearLayout>
 
-                <EditText
-                    android:id="@+id/product_price"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Price"
-                    android:inputType="numberDecimal" />
+        <EditText
+            android:id="@+id/product_discount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Discount"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp" />
 
-                <EditText
-                    android:id="@+id/product_mrp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="MRP"
-                    android:inputType="numberDecimal" />
+        <EditText
+            android:id="@+id/product_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quantity"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:minHeight="48dp" />
 
-            </LinearLayout>
+        <EditText
+            android:id="@+id/product_brand_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand name"
+            android:importantForAutofill="no"
+            android:minHeight="48dp" />
 
-            <EditText
-                android:id="@+id/product_discount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Discount"
-                android:inputType="numberDecimal" />
+        <EditText
+            android:id="@+id/product_expiry_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Expiry date"
+            android:importantForAutofill="no"
+            android:inputType="date"
+            android:minHeight="48dp" />
 
-            <EditText
-                android:id="@+id/product_quantity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Quantity"
-                android:inputType="number" />
+        <EditText
+            android:id="@+id/product_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingredients"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:minHeight="48dp"
+            android:scrollbars="vertical" />
 
-            <EditText
-                android:id="@+id/product_brand_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Brand name" />
-
-            <EditText
-                android:id="@+id/product_expiry_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Expiry date"
-                android:inputType="date" />
-
-            <EditText
-                android:id="@+id/product_ingredients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ingredients"
-                android:inputType="textMultiLine"
-                android:scrollbars="vertical" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <Button
-                    android:id="@+id/btn_select_multiple_images"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5sp"
-                    android:layout_weight="1"
-                    android:text="Select multiple images"
-                    android:textAllCaps="false" />
-
-                <Button
-                    android:id="@+id/btn_select_thumbnail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Select product Thumbnail"
-                    android:textAllCaps="false" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <ImageView
-                    android:id="@+id/product_thumbnail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="Product Thumbnail"
-                    android:scaleType="centerCrop" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/multi_product_images_recycler_view"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:scrollbars="horizontal" />
-            </LinearLayout>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <Button
-                android:id="@+id/btn_add_product"
-                android:layout_width="match_parent"
+                android:id="@+id/btn_select_multiple_images"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Submit"
+                android:layout_marginEnd="5sp"
+                android:layout_weight="1"
+                android:text="Select multiple images"
+                android:textAllCaps="false"
+                tools:ignore="TextContrastCheck" />
+
+            <Button
+                android:id="@+id/btn_select_thumbnail"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Select product Thumbnail"
                 android:textAllCaps="false" />
         </LinearLayout>
-    </ScrollView>
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <ImageView
+                android:id="@+id/product_thumbnail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="Product Thumbnail"
+                android:scaleType="centerCrop" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/multi_product_images_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scrollbars="horizontal" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_add_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+</ScrollView>

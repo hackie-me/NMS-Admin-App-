@@ -15,9 +15,9 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class UpdateAdminProfileActivity : AppCompatActivity() {
-
 
     private lateinit var etEditProfileName: EditText
     private lateinit var etEditProfileEmail: EditText
@@ -60,16 +60,24 @@ class UpdateAdminProfileActivity : AppCompatActivity() {
             )
 
             CoroutineScope(Dispatchers.IO).launch {
-                val repository = AdminRepository.update(
+                val response = AdminRepository.update(
                     adminModel,
                     Authentication.getToken(this@UpdateAdminProfileActivity)!!
                 )
-                with(Dispatchers.Main) {
-                    if (repository.code == 204) {
+                withContext(Dispatchers.Main) {
+                    if (response.code == 204) {
                         Helper.showToast(this@UpdateAdminProfileActivity, "Profile Updated")
-                        Helper.showToast(this@UpdateAdminProfileActivity, repository.message!!)
+                        // Add new token to shared preferences
+                        Authentication.storeToken(
+                            this@UpdateAdminProfileActivity,
+                            response.data!!
+                        )
                         finish()
                     } else {
+                        Helper.showToast(
+                            this@UpdateAdminProfileActivity,
+                            response.code.toString()
+                        )
                         Helper.showToast(this@UpdateAdminProfileActivity, "Error Updating Profile")
                     }
                 }
