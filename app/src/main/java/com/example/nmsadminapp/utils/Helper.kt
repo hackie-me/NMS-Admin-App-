@@ -141,9 +141,43 @@ class Helper {
             ).getAsJsonObject("data")?.get(value)?.asString
         }
 
-        // Function to show snackbar
+        // Function to show snack-bar
         fun showSnackBar(view: View, message: String) {
             Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
         }
+
+        // Function to show snack-bar with action
+        fun showSnackBarWithAction(
+            view: View,
+            message: String,
+            action: String,
+            function: () -> Unit
+        ) {
+            Snackbar.make(view, message, Snackbar.LENGTH_SHORT).setAction(action) {
+                function()
+            }.show()
+        }
+
+        // Function to toggle progress Dialog
+        fun toggleProgressBar(progressDialog: android.widget.ProgressBar, show: Boolean) {
+            if (show) {
+                progressDialog.visibility = View.VISIBLE
+            } else {
+                progressDialog.visibility = View.GONE
+            }
+        }
+
+
+        // Function to Generate Random String
+        fun generateRandomString(i: Int): Any {
+            val chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+            val sb = StringBuilder()
+            for (j in 0 until i) {
+                val index = (Math.random() * chars.length).toInt()
+                sb.append(chars[index])
+            }
+            return sb.toString()
+        }
+
     }
 }

@@ -1,11 +1,13 @@
 package com.example.nmsadminapp.utils.api
 
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 
 class ApiRequest {
     companion object {
+
 
         // TODO: Change this to your own server URL
         // private const val BASE_URL = "http://192.168.56.1/nms/api/" // College IP
@@ -61,6 +63,9 @@ class ApiRequest {
         const val URL_UPDATE_OFFER = "${BASE_URL}offer/update.php"
         const val URL_DELETE_OFFER = "${BASE_URL}offer/delete.php"
 
+        // Endpoints for Handling Upload Image
+        private const val URL_UPLOAD_CATEGORY_IMAGE = "${BASE_URL}store/upload_category_image.php"
+
         // Method to send get request
         fun getRequest(url: String, token: String? = null): ApiResponse {
             return if (token == null) {
@@ -92,6 +97,17 @@ class ApiRequest {
                         .build()
                 )
             }
+        }
+
+        // Post Request with image
+        fun postRequestWithImage(bodyData: MultipartBody, token: String): ApiResponse {
+            return send(
+                Request.Builder()
+                    .url(URL_UPLOAD_CATEGORY_IMAGE)
+                    .post(bodyData)
+                    .addHeader("Authorization", "Bearer $token")
+                    .build()
+            )
         }
 
         // Method to send request
