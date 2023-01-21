@@ -71,6 +71,9 @@
     <color name="background">#FFFEFE</color>
     <color name="cardcolor">#F8F8F8</color>
     <color name="textcolor">#C41F1F1F</color>
+    <color name="light_blue_600">#FFBF00</color>
+    <color name="light_blue_A200">#FFBF00</color>
+    <color name="black_overlay">#FFBF00</color>
 </resources>
 
 
