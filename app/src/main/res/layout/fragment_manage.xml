@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.ManageFragment">
+    tools:context=".fragments.ManageFragment"
+    android:background="@color/background">
 
     <!--   Welcome Message for Admin-->
     <TextView
@@ -14,7 +15,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:text="Welcome to Manage Fragment"
-        android:textColor="@color/black"
+        android:textColor="@color/textcolor"
         android:textSize="20sp"
         android:textStyle="bold" />
 

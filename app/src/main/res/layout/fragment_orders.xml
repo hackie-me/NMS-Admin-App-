@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.OrdersFragment">
+    tools:context=".fragments.OrdersFragment"
+    android:background="@color/background">
 
     <HorizontalScrollView
         android:layout_width="match_parent"

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.ProductsFragment">
+    tools:context=".fragments.ProductsFragment"
+    android:background="@color/background">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"

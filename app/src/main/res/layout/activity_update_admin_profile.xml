@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateAdminProfileActivity">
+    tools:context=".UpdateAdminProfileActivity"
+    android:background="@color/background">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivEditProfileImage"

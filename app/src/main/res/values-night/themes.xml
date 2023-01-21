@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.NMSAdminApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.NMSAdminApp" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/color_primary</item>
         <!-- Darker primary color. -->
@@ -15,7 +15,5 @@
 
     </style>
 
-    <style name="Widget.Support.CoordinatorLayout" parent="android:Widget">
-        @null
-    </style>
+
 </resources>

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.ProductTabFragment">
+    tools:context=".fragments.ProductTabFragment"
+    android:background="@color/background">
 <!--    SOME CHANGECE-->
 
     <!-- If There are no categories -->

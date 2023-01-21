@@ -6,13 +6,10 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#C41F1F1F</color>
-    <color name="textcolor">#ffffff</color>
-    <color name="Primary">#4157FF</color>
-    <color name="primaryColor">#457f</color>
-    <color name="appcolor">#4157FF</color>
     <color name="night_background">#ffffff</color>
-    <color name="iconecolor">#ffffff</color>
-    <color name="btncolor">#000000</color>
     <color name="nav_bar">#ffffff</color>
     <color name="amber_a400">#FFBF00</color>
+    <color name="background">#FFFEFE</color>
+    <color name="cardcolor">#F8F8F8</color>
+    <color name="textcolor">#C41F1F1F</color>
 </resources>

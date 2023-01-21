@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddNewCategoryActivity">
+    tools:context=".AddNewCategoryActivity"
+    android:background="@color/background">
 
     <EditText
         android:id="@+id/etCategoryName"
@@ -16,6 +17,7 @@
         android:ems="10"
         android:hint="Category Name"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
