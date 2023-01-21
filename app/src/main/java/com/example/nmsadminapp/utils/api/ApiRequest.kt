@@ -64,7 +64,7 @@ class ApiRequest {
         const val URL_DELETE_OFFER = "${BASE_URL}offer/delete.php"
 
         // Endpoints for Handling Upload Image
-        private const val URL_UPLOAD_CATEGORY_IMAGE = "${BASE_URL}store/upload_category_image.php"
+        const val URL_UPLOAD_CATEGORY_IMAGE = "${BASE_URL}store/upload_category_image.php"
 
         // Method to send get request
         fun getRequest(url: String, token: String? = null): ApiResponse {
@@ -100,10 +100,10 @@ class ApiRequest {
         }
 
         // Post Request with image
-        fun postRequestWithImage(bodyData: MultipartBody, token: String): ApiResponse {
+        fun postRequestWithImage(url: String, bodyData: MultipartBody, token: String): ApiResponse {
             return send(
                 Request.Builder()
-                    .url(URL_UPLOAD_CATEGORY_IMAGE)
+                    .url(url)
                     .post(bodyData)
                     .addHeader("Authorization", "Bearer $token")
                     .build()

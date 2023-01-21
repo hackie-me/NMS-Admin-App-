@@ -1,9 +1,9 @@
 package com.example.nmsadminapp
 
-import android.content.Intent
-import android.net.Uri
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -13,17 +13,21 @@ import com.example.nmsadminapp.repo.CategoryRepository
 import com.example.nmsadminapp.repo.ProductRepository
 import com.example.nmsadminapp.utils.Helper
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 
 class AddNewProductActivity : AppCompatActivity() {
 
     // Initialize Variables
     private lateinit var productName: EditText
     private lateinit var productDescription: EditText
+    private lateinit var productCategorySpinner: Spinner
+    private lateinit var productCategoryId: String
+    private lateinit var productStatusSpinner: Spinner
+    private lateinit var productUnitSpinner: Spinner
     private lateinit var productPrice: EditText
     private lateinit var productMrp: EditText
     private lateinit var productDiscount: EditText
@@ -36,8 +40,6 @@ class AddNewProductActivity : AppCompatActivity() {
     private lateinit var btnAddProduct: Button
     private lateinit var btnSelectMultipleImages: Button
     private lateinit var btnSelectThumbnail: Button
-    private val arr = ArrayList<Uri>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,18 +47,34 @@ class AddNewProductActivity : AppCompatActivity() {
 
         // Init views
         initializeViews()
+        // Initialize the spinner
         displayCategoryList()
+        displayStatusList()
+        displayUnitList()
 
         // Set on click listener on thumbnail
         btnSelectThumbnail.setOnClickListener {
-            // Open the gallery
-            selectThumbnailImage()
+            // TODO: Open the gallery and select a thumbnail
         }
         // Set on click listener on Images
         btnSelectMultipleImages.setOnClickListener {
-            // Open the gallery
-            // selectMultipleImages()
-            // TODO:: Add the images to the recycler view
+            // TODO: Open the gallery and select multiple images
+        }
+
+        //set on click Listener on expiry date
+        productExpiryDate.setOnClickListener {
+            // Open the date picker and select the expiry date
+            val datePickerDialog = DatePickerDialog(
+                this,
+                DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                    // Set the selected date to the EditText
+                    productExpiryDate.setText("$dayOfMonth-${month + 1}-$year")
+                },
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+            )
+            datePickerDialog.show()
         }
 
         // Set on click listener on Add Product
@@ -70,6 +88,9 @@ class AddNewProductActivity : AppCompatActivity() {
     private fun initializeViews() {
         productName = findViewById(R.id.product_name)
         productDescription = findViewById(R.id.product_description)
+        productCategorySpinner = findViewById(R.id.product_category_spinner)
+        productStatusSpinner = findViewById(R.id.product_status_spinner)
+        productUnitSpinner = findViewById(R.id.product_unit_spinner)
         productPrice = findViewById(R.id.product_price)
         productMrp = findViewById(R.id.product_mrp)
         productDiscount = findViewById(R.id.product_discount)
@@ -124,7 +145,14 @@ class AddNewProductActivity : AppCompatActivity() {
                 productIngredients.error = "Please Enter Product Ingredients"
                 false
             }
-
+            productStatusSpinner.selectedItem.toString() == "Select Status" -> {
+                Toast.makeText(this, "Please Select Status", Toast.LENGTH_SHORT).show()
+                false
+            }
+            productUnitSpinner.selectedItem.toString() == "Select Unit" -> {
+                Toast.makeText(this, "Please Select Unit", Toast.LENGTH_SHORT).show()
+                false
+            }
             else -> true
         }
     }
@@ -132,87 +160,61 @@ class AddNewProductActivity : AppCompatActivity() {
     // Function to add new product
     private fun addNewProduct() {
         if (!validateData()) {
+            Helper.showToast(this, "Please fill all the fields")
             return
         }
 
-        // static image array
-        val arr = arrayListOf(
-            "image 1",
-            "image 2",
-            "image 3",
-        )
+        // get the data from the views
+        val productName = productName.text.toString()
+        val productDescription = productDescription.text.toString()
+        val productPrice = productPrice.text.toString()
+        val productMrp = productMrp.text.toString()
+        val productDiscount = productDiscount.text.toString()
+        val productBrandName = productBrandName.text.toString()
+        val productExpiryDate = productExpiryDate.text.toString()
+        val productIngredients = productIngredients.text.toString()
+        val productStatus = productStatusSpinner.selectedItem.toString()
+        val productUnit = productUnitSpinner.selectedItem.toString()
+        val productStock = productStock.text.toString()
 
         val productModel = ProductModel(
-            productName = productName.text.toString(),
-            productDescription = productDescription.text.toString(),
-            productPrice = productPrice.text.toString(),
-            productMrp = productMrp.text.toString(),
-            productDiscount = productDiscount.text.toString(),
-            productBrandName = productBrandName.text.toString(),
-            productExpiryDate = productExpiryDate.text.toString(),
-            productThumbnail = "image 1",
-            productImages = arr,
-            productIngredients = productIngredients.text.toString(),
-            productStatus = "active",
-            productUnit = "kg",
-            productStock = productStock.text.toString(),
-            productCategoryId = "1",
+            productName = productName,
+            productDescription = productDescription,
+            productPrice = productPrice,
+            productMrp = productMrp,
+            productDiscount = productDiscount,
+            productBrandName = productBrandName,
+            productExpiryDate = productExpiryDate,
+            productIngredients = productIngredients,
+            productStock = productStock,
+            productStatus = productStatus,
+            productUnit = productUnit,
+            productCategoryId = productCategoryId
         )
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = ProductRepository.add(productModel, this@AddNewProductActivity)
-                with(Dispatchers.Main) {
-                    if (response.code == 201) {
-                        Helper.showToast(this@AddNewProductActivity, "Product Added Successfully")
-                        finish()
-                    } else {
-                        Log.d("Response", response.message.toString())
-                        Helper.showToast(
-                            this@AddNewProductActivity,
-                            "Error Occurred : ${response.message}"
-                        )
+                withContext(Dispatchers.Main) {
+                    when (response.code) {
+                        201 -> {
+                            Helper.showToast(
+                                this@AddNewProductActivity,
+                                "Product Added Successfully"
+                            )
+                            finish()
+                        }
+                        else -> {
+                            Helper.showToast(
+                                this@AddNewProductActivity,
+                                "Error Occurred : ${response.code}"
+                            )
+                        }
                     }
                 }
             } catch (ex: Exception) {
                 Log.d("Error", ex.toString())
             }
-        }
-    }
-
-    // Function to select multiple images
-    private fun selectMultipleImages() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Multiple Pictures"), 1)
-        Log.i("Multiple Images", "Images clicked")
-    }
-
-    // Function to select thumbnail image
-    private fun selectThumbnailImage() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 2)
-    }
-
-    // Function to handle the result of the activity
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && requestCode == 1) {
-            if (data?.clipData != null) {
-                val count = data.clipData!!.itemCount
-                for (i in 0 until count) {
-                    val imageUri = data.clipData!!.getItemAt(i).uri
-                    arr.add(imageUri)
-                    Log.d("Image List", "onActivityResult: {$imageUri.toString()}")
-                }
-            }
-        } else {
-            Log.i("Result", "Result not received")
         }
     }
 
@@ -222,27 +224,73 @@ class AddNewProductActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = CategoryRepository.fetchAll(this@AddNewProductActivity)
-                if (response.code == 200) {
-                    val gson = Gson()
-                    val jsonArray = response.data
-                    val type = object : TypeToken<List<CategoryModel>>() {}.type
-                    val items: List<CategoryModel> = gson.fromJson(jsonArray, type)
+                withContext(Dispatchers.Main) {
+                    when (response.code) {
+                        200 -> {
+                            val items =
+                                Gson().fromJson(response.data, Array<CategoryModel>::class.java)
+                            val adapter = ArrayAdapter(
+                                this@AddNewProductActivity,
+                                android.R.layout.simple_spinner_item,
+                                items.map { it.categoryName }
+                            )
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                            productCategory.adapter = adapter
 
-                    withContext(Dispatchers.Main) {
-                        val adapter = ArrayAdapter(
-                            this@AddNewProductActivity,
-                            android.R.layout.simple_spinner_item,
-                            items.map { it.categoryName }
-                        )
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                        productCategory.adapter = adapter
+                            productCategory.onItemSelectedListener = object :
+                                AdapterView.OnItemSelectedListener {
+                                override fun onItemSelected(
+                                    parent: AdapterView<*>?,
+                                    view: View?,
+                                    position: Int,
+                                    id: Long
+                                ) {
+                                    val category = items[position]
+                                    productCategoryId = category.categoryId
+                                }
+
+                                override fun onNothingSelected(parent: AdapterView<*>?) {
+                                    // Force user to select category
+                                    productCategoryId = "1"
+                                }
+                            }
+                        }
+                        else -> {
+                            Toast.makeText(
+                                this@AddNewProductActivity,
+                                "Error Occurred ${response.data}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
-                } else {
-                    Log.d("Response", response.message.toString())
                 }
             } catch (ex: Exception) {
                 Log.d("Error", ex.toString())
             }
         }
+    }
+
+    // Function to display unit list in Spinner
+    private fun displayUnitList() {
+        val items: Array<String> = arrayOf("Select Unit", "kg", "g", "mg", "l", "ml", "piece")
+        val adapter = ArrayAdapter(
+            this@AddNewProductActivity,
+            android.R.layout.simple_spinner_item,
+            items
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        productUnitSpinner.adapter = adapter
+    }
+
+    // Function to display status list in Spinner
+    private fun displayStatusList() {
+        val items: Array<String> = arrayOf("Select Status", "Active", "Inactive")
+        val adapter = ArrayAdapter(
+            this@AddNewProductActivity,
+            android.R.layout.simple_spinner_item,
+            items
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        productStatusSpinner.adapter = adapter
     }
 }

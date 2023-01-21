@@ -12,7 +12,7 @@ data class ProductModel(
     @SerializedName("brand_name") val productBrandName: String = "",
     @SerializedName("expiry_date") val productExpiryDate: String = "",
     @SerializedName("thumbnail") val productThumbnail: String = "",
-    @SerializedName("images") val productImages: ArrayList<String> = arrayListOf<String>(""),
+    @SerializedName("images") val productImages: String = "",
     @SerializedName("ingredients") val productIngredients: String = "",
     @SerializedName("status") val productStatus: String = "",
     @SerializedName("unit") val productUnit: String = "",

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "659562026163",
+    "project_id": "nms-admin-app",
+    "storage_bucket": "nms-admin-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659562026163:android:e1c8da096382a5ed258cc6",
+        "android_client_info": {
+          "package_name": "com.example.nmsadminapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659562026163-bnvov1vcmlq9vgunp8pm76nt6phm8ust.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZbq0gapknMYNL_At4bxLpmu-yvjr3LEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659562026163-bnvov1vcmlq9vgunp8pm76nt6phm8ust.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

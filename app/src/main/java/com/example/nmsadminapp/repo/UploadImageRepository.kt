@@ -12,7 +12,8 @@ class UploadImageRepository {
         fun uploadImage(
             context: Context,
             filePart: MultipartBody.Part,
-            lastRecordId: String
+            lastRecordId: String,
+            url: String
         ): ApiResponse {
             val requestBody = MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
@@ -20,6 +21,7 @@ class UploadImageRepository {
                 .addFormDataPart("last_record_id", lastRecordId)
                 .build()
             return ApiRequest.postRequestWithImage(
+                url,
                 requestBody,
                 Authentication.getToken(context)!!
             )

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,6 +14,7 @@ import com.example.nmsadminapp.repo.CategoryRepository
 import com.example.nmsadminapp.repo.UploadImageRepository
 import com.example.nmsadminapp.utils.HandlePermissions
 import com.example.nmsadminapp.utils.Helper
+import com.example.nmsadminapp.utils.api.ApiRequest
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,6 +34,7 @@ class AddNewCategoryActivity : AppCompatActivity() {
     private lateinit var ivCategoryImage: ImageView
     private lateinit var btnSelectImage: Button
     private lateinit var catId: String
+    private var imageData: Intent? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,8 +109,9 @@ class AddNewCategoryActivity : AppCompatActivity() {
     // get the image from the gallery
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            ivCategoryImage.setImageURI(data?.data)
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            ivCategoryImage.setImageURI(data.data)
+            imageData = data
         }
     }
 
@@ -129,18 +131,29 @@ class AddNewCategoryActivity : AppCompatActivity() {
                 UploadImageRepository.uploadImage(
                     this@AddNewCategoryActivity,
                     filePart,
-                    lastRecordId
+                    lastRecordId,
+                    ApiRequest.URL_UPLOAD_CATEGORY_IMAGE
                 )
-            if (response.code == 201) {
-                withContext(Dispatchers.Main) {
-                    Helper.showToast(this@AddNewCategoryActivity, "Image uploaded successfully")
-                    // Display response message
-                    Helper.showToast(this@AddNewCategoryActivity, response.data!!)
-                }
-            } else {
-                withContext(Dispatchers.Main) {
-                    Helper.showToast(this@AddNewCategoryActivity, "Image upload failed")
-                    Log.d("ImageUpload", response.code.toString())
+            withContext(Dispatchers.Main) {
+                when (response.code) {
+                    201 -> {
+                        Helper.showToast(this@AddNewCategoryActivity, "Image uploaded successfully")
+                    }
+                    406 -> {
+                        Helper.showToast(this@AddNewCategoryActivity, "Image not uploaded")
+                    }
+                    409 -> {
+                        Helper.showToast(this@AddNewCategoryActivity, "Image not uploaded")
+                    }
+                    401 -> {
+                        Helper.showToast(this@AddNewCategoryActivity, "Image not uploaded")
+                    }
+                    500 -> {
+                        Helper.showToast(this@AddNewCategoryActivity, "Server error")
+                    }
+                    else -> {
+                        Helper.showToast(this@AddNewCategoryActivity, "Error")
+                    }
                 }
             }
         }
@@ -148,16 +161,17 @@ class AddNewCategoryActivity : AppCompatActivity() {
 
     // Function to add the category to the database
     private fun addNewCategory() {
-        val categoryName = txtCategoryName.text.toString()
-        val categoryDescription = txtCategoryDescription.text.toString()
+        // check validation
+        if (validateCategory()) {
+            val categoryName = txtCategoryName.text.toString()
+            val categoryDescription = txtCategoryDescription.text.toString()
 
-        // check if the image is selected or not
-        if (ivCategoryImage.drawable == null) {
-            Helper.showToast(this, "Please select an image")
-            return
-        }
+            // check if the image is selected or not
+            // if (ivCategoryImage.drawable == null) {
+            //      Helper.showToast(this, "Please select an image")
+            //      return
+            // }
 
-        if (categoryName.isNotEmpty() && categoryDescription.isNotEmpty()) {
             val categoryModal = CategoryModel(
                 categoryName = categoryName,
                 categoryDescription = categoryDescription,
@@ -165,13 +179,54 @@ class AddNewCategoryActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 val response = CategoryRepository.add(categoryModal, this@AddNewCategoryActivity)
                 withContext(Dispatchers.Main) {
-                    if (response.code == 201) {
-                        Helper.showToast(this@AddNewCategoryActivity, "Category added successfully")
-                        finish()
-                    } else {
-                        Helper.showToast(this@AddNewCategoryActivity, "Error " + response.message)
+                    when (response.code) {
+                        201 -> {
+                            Helper.showToast(
+                                this@AddNewCategoryActivity,
+                                "Category added successfully"
+                            )
+                        }
+                        406 -> {
+                            Helper.showToast(this@AddNewCategoryActivity, "Category not added")
+                        }
+                        409 -> {
+                            Helper.showToast(this@AddNewCategoryActivity, "Category not added")
+                        }
+                        401 -> {
+                            Helper.showToast(this@AddNewCategoryActivity, "Category not added")
+                        }
+                        500 -> {
+                            Helper.showToast(this@AddNewCategoryActivity, "Server error")
+                        }
+                        else -> {
+                            Helper.showToast(
+                                this@AddNewCategoryActivity,
+                                "Something went wrong ${response.data}}"
+                            )
+                        }
                     }
                 }
+            }
+        }
+    }
+
+    // Function to validate the category
+    private fun validateCategory(): Boolean {
+        val categoryName = txtCategoryName.text.toString()
+        val categoryDescription = txtCategoryDescription.text.toString()
+        return when {
+            categoryName.isEmpty() -> {
+                txtCategoryName.error = "Please enter the category name"
+                txtCategoryName.requestFocus()
+                false
+            }
+            categoryDescription.isEmpty() -> {
+                txtCategoryDescription.error = "Please enter the category description"
+                txtCategoryDescription.requestFocus()
+                false
+            }
+            else -> {
+                true
             }
         }
     }
@@ -180,38 +235,48 @@ class AddNewCategoryActivity : AppCompatActivity() {
     private fun updateCategory() {
         val categoryName = txtCategoryName.text.toString()
         val categoryDescription = txtCategoryDescription.text.toString()
-
-        // Convert the image to base64
-        var categoryImage = Helper.convertImageToBase64(ivCategoryImage)
-        categoryImage = "data:image/jpeg;base64,$categoryImage"
-
-        if (categoryName.isNotEmpty() && categoryDescription.isNotEmpty() && categoryImage.isNotEmpty()) {
-            val categoryModal = CategoryModel(
-                categoryId = catId,
-                categoryName = categoryName,
-                categoryDescription = categoryDescription,
-                categoryImage = categoryImage
-            )
-            CoroutineScope(Dispatchers.IO).launch {
-                val response = CategoryRepository.update(categoryModal, this@AddNewCategoryActivity)
-                withContext(Dispatchers.Main) {
-                    if (response.code == 204) {
+        val categoryModal = CategoryModel(
+            categoryId = catId,
+            categoryName = categoryName,
+            categoryDescription = categoryDescription,
+        )
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = CategoryRepository.update(categoryModal, this@AddNewCategoryActivity)
+            withContext(Dispatchers.Main) {
+                when (response.code) {
+                    204 -> {
                         Helper.showToast(
                             this@AddNewCategoryActivity,
                             "Category updated successfully"
                         )
-                        // Remove the shared preference
-                        Helper.removeSharedPreference(this@AddNewCategoryActivity, "category")
-                        finish()
-                    } else {
-                        Helper.showToast(this@AddNewCategoryActivity, "Error " + response.message)
+                    }
+                    406 -> {
+                        Helper.showToast(this@AddNewCategoryActivity, "Category not updated")
+                    }
+                    409 -> {
+                        Helper.showToast(this@AddNewCategoryActivity, "Category not updated")
+                    }
+                    401 -> {
+                        Helper.showToast(this@AddNewCategoryActivity, "Category not updated")
+                    }
+                    500 -> {
+                        Helper.showToast(this@AddNewCategoryActivity, "Server error")
+                    }
+                    else -> {
+                        Helper.showToast(
+                            this@AddNewCategoryActivity,
+                            "Something went wrong ${response.data}}"
+                        )
                     }
                 }
             }
         }
     }
 
-    // Function Remove Category Shared Preference on Activity Destroy to avoid memory leak and data inconsistency issues in the app when the user navigates back to the previous activity and the shared preference is still present in the memory.
+    /* Function Remove Category Shared Preference on Activity Destroy to
+        avoid memory leak and data inconsistency issues in
+        the app when the user navigates back to the previous activity and
+        the shared preference is still present in the memory. */
     override fun onDestroy() {
         super.onDestroy()
         // Remove the shared preference

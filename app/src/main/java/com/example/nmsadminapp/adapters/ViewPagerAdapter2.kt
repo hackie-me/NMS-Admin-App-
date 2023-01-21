@@ -1,12 +1,11 @@
 package com.example.nmsadminapp.adapters
 
-import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.nmsadminapp.fragments.CategoryTabFragment
-import com.example.nmsadminapp.fragments.ProductTabFragment
+import com.example.nmsadminapp.fragments.TabCategoryFragment
+import com.example.nmsadminapp.fragments.TabProductFragment
 
 class ViewPagerAdapter2(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
@@ -17,8 +16,8 @@ class ViewPagerAdapter2(fragmentManager: FragmentManager, lifecycle: Lifecycle) 
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> ProductTabFragment()
-            1 -> CategoryTabFragment()
+            0 -> TabProductFragment()
+            1 -> TabCategoryFragment()
             else -> Fragment()
         }
     }

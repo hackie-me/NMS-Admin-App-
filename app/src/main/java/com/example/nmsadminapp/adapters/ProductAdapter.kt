@@ -15,12 +15,12 @@ class ProductAdapter(
 ) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.rc_list_item_product, parent, false)
-        return ProductAdapter.ViewHolder(view)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -28,6 +28,8 @@ class ProductAdapter(
         holder.productName.text = product.productName
         holder.productPrice.text = product.productPrice
         Glide.with(holder.itemView.context).load(product.productThumbnail)
+            .placeholder(R.drawable.circle_loading_lines)
+            .error(R.drawable.soon)
             .into(holder.productThumbnail)
     }
 

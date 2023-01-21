@@ -91,6 +91,10 @@ class AccountFragment : Fragment() {
         // convert json string to json object
         adminName = Helper.getDataFromToken(requireContext(), "name")!!
         adminProfile = Helper.getDataFromToken(requireContext(), "image")!!
+        // if admin profile is blank then set default profile picture
+        if (adminProfile == "") {
+            adminProfile = "https://i.pravatar.cc/150"
+        }
         adminEmail = Helper.getDataFromToken(requireContext(), "email")!!
         adminPhone = Helper.getDataFromToken(requireContext(), "phone")!!
 

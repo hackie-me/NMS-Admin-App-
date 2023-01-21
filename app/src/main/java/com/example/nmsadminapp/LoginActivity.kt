@@ -28,23 +28,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // if already logged in, redirect to main activity
-        if (Authentication.isLoggedIn(this)) {
-            // Fetch New Token from API
-            CoroutineScope(Dispatchers.IO).launch {
-                val repository = AdminRepository()
-                val response =
-                    AdminRepository.refreshToken(Authentication.getToken(this@LoginActivity)!!)
-                if (response.code == 200) {
-                    Authentication.storeToken(this@LoginActivity, response.data!!.toString())
-                    withContext(Dispatchers.Main) {
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                        finish()
-                    }
-                }
-            }
-        }
-
         // initialize variables
         init()
 

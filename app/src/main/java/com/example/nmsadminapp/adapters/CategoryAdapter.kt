@@ -32,10 +32,18 @@ class CategoryAdapter(
         val itemsViewModel = category[position]
         holder.bind(itemsViewModel, clickListener)
 
-        // sets the image to the imageview from our itemHolder class
-        Glide.with(holder.itemView.context).load(itemsViewModel.categoryImage)
-            .into(holder.categoryImage)
-
+        // if categoryImage is blank, set the default image
+        if (itemsViewModel.categoryImage.isBlank()) {
+            // sets the image to the imageview from our itemHolder class
+            Glide.with(holder.itemView.context).load("https://picsum.photos/200/300")
+                .placeholder(R.drawable.circle_loading_lines)
+                .error(R.drawable.soon)
+                .into(holder.categoryImage)
+        } else {
+            // sets the image to the imageview from our itemHolder class
+            Glide.with(holder.itemView.context).load(itemsViewModel.categoryImage)
+                .into(holder.categoryImage)
+        }
         // sets the text to the textview from our itemHolder class
         holder.categoryName.text = itemsViewModel.categoryName
 

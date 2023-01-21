@@ -10,4 +10,7 @@
     <string name="enter_password">Enter password</string>
     <string name="login">Login</string>
     <string name="dp" />
+    <string name="title_activity_splashscreen">SplashscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

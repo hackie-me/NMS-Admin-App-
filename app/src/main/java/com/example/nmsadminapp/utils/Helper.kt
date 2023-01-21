@@ -3,6 +3,7 @@ package com.example.nmsadminapp.utils
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.ConnectivityManager
 import android.util.Base64
 import android.view.View
 import android.widget.ImageView
@@ -135,7 +136,7 @@ class Helper {
         // Function to fetch user id from JWT Token
         fun getDataFromToken(context: Context, value: String): String? {
             return Gson().fromJson(
-                Helper.decodeJWTToken(
+                decodeJWTToken(
                     Authentication.getToken(context)!!
                 ), JsonObject::class.java
             ).getAsJsonObject("data")?.get(value)?.asString
@@ -179,5 +180,11 @@ class Helper {
             return sb.toString()
         }
 
+        fun isInternetAvailable(context: Context): Boolean {
+            val connectivityManager =
+                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val activeNetworkInfo = connectivityManager.activeNetworkInfo
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected
+        }
     }
 }
