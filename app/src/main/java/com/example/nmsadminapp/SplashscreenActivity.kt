@@ -55,7 +55,7 @@ class SplashscreenActivity : AppCompatActivity() {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-        }, 5, TimeUnit.SECONDS)
+        }, 1, TimeUnit.SECONDS)
 
     }
 }

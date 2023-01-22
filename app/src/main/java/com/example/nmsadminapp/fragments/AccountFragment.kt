@@ -76,7 +76,10 @@ class AccountFragment : Fragment() {
         }
         // FAQ
         tvFAQ.setOnClickListener {
-            Helper.showSnackBar(requireView(), "FAQ")
+            // Open FAQ fragment
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainer, FaqFragment())
+                ?.commit()
         }
         // logout
         tvLogout.setOnClickListener {

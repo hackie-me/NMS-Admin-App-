@@ -63,6 +63,12 @@ class ApiRequest {
         const val URL_UPDATE_OFFER = "${BASE_URL}offer/update.php"
         const val URL_DELETE_OFFER = "${BASE_URL}offer/delete.php"
 
+        // Endpoints for Handling FAQ
+        const val URL_GET_FAQ = "${BASE_URL}faq/fetch.php"
+        const val URL_ADD_FAQ = "${BASE_URL}faq/insert.php"
+        const val URL_UPDATE_FAQ = "${BASE_URL}faq/update.php"
+        const val URL_DELETE_FAQ = "${BASE_URL}faq/delete.php"
+
         // Endpoints for Handling Upload Image
         const val URL_UPLOAD_CATEGORY_IMAGE = "${BASE_URL}store/upload_category_image.php"
 
