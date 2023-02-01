@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+          >
+
+            <TextView
+                android:id="@+id/Orders_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5sp"
+                android:text="# ORD-0001"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/launch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="2sp"
+                android:background="@drawable/ic_launch"/>
+
+            <TextView
+                android:id="@+id/Invoice_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:text="INV-0001"
+                android:textColor="@color/primary_color"
+                android:fontFamily="@font/sofia_pro"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/order_completed_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="30dp"
+                android:text="1 feb 23"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+            <View
+                android:layout_width="1.8dp"
+                android:layout_height="@dimen/_18sp"
+                android:background="@color/color_text_secondary"
+                android:layout_marginStart="5sp"
+                android:layout_marginTop="8dp"/>
+            <TextView
+                android:id="@+id/order_completed_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:text="09:45 PM"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="370dp"
+                android:layout_height="2sp"
+                android:background="@color/color_card_dark"
+                android:layout_marginStart="5sp"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:text="Rahul Kanjariya"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/phone"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="120sp"
+                android:background="@drawable/ic_phone"/>
+            <TextView
+                android:id="@+id/phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:text="9265614292"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_marginTop="5sp"
+                android:layout_marginStart="5sp"
+                android:background="@drawable/ic_baseline_orders_24"/>
+            <TextView
+                android:id="@+id/Product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:text="xyz x 10.0"
+                android:textSize="17sp"
+                android:fontFamily="@font/overpass"
+                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/forward_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="190sp"
+                android:background="@drawable/ic_arrow_forward"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5sp">
+
+            <TextView
+                android:id="@+id/Orders_cod"
+                android:layout_width="55dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="6dp"
+                android:text="cod"
+                android:layout_marginStart="5sp"
+                android:backgroundTint="@color/blue_gray_900_26"
+                android:textAlignment="center"
+                android:background="@drawable/btn_pill"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/order_Price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="@dimen/_225pxh"
+                android:text="$ 180.00"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="373dp"
+                android:layout_height="2sp"
+                android:background="@color/color_card_dark"
+                android:layout_marginStart="5sp"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <ImageView
+            android:layout_width="24sp"
+            android:layout_height="24sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="5sp"
+            android:background="@drawable/ic_check"/>
+        <TextView
+            android:id="@+id/OrderDelivered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="5dp"
+            android:text="Order Delivered"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

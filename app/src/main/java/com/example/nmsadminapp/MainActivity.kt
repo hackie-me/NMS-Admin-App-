@@ -16,9 +16,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var profileFragment: AccountFragment
-    private lateinit var manageFragment: ManageFragment
+    private lateinit var manageFragment: InvoiceFragment
     private lateinit var ordersFragment: OrdersFragment
-    private lateinit var productsFragment: ProductsFragment
+    private lateinit var productsFragment: CatalogueFragment
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity() {
         // Home Fragment
         homeFragment = HomeFragment()
         profileFragment = AccountFragment()
-        manageFragment = ManageFragment()
+        manageFragment = InvoiceFragment()
         ordersFragment = OrdersFragment()
-        productsFragment = ProductsFragment()
+        productsFragment = CatalogueFragment()
 
         // Set Home Fragment as Default
         showHomeFragment()

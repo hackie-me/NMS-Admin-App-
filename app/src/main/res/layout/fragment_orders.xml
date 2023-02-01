@@ -16,34 +16,64 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnAll"
+                android:id="@+id/btnNew"
                 android:layout_width="100sp"
                 android:layout_height="50sp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_pill"
                 android:padding="5sp"
-                android:text="All" />
+                android:text="New" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnPending"
+                android:id="@+id/btnConfirmed"
                 android:layout_width="150sp"
                 android:layout_height="50sp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_pill"
                 android:padding="5sp"
-                android:text="Pending" />
+                android:text="Confirmed" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnDelivered"
+                android:id="@+id/btnShipmentReady"
                 android:layout_width="150dp"
                 android:layout_height="50sp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_pill"
                 android:padding="5sp"
-                android:text="Delivered" />
+                android:text="Shipment Ready" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnInTransit"
+                android:layout_width="150dp"
+                android:layout_height="50sp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_pill"
+                android:padding="5sp"
+                android:text="In Transit" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCompleted"
+                android:layout_width="150dp"
+                android:layout_height="50sp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_pill"
+                android:padding="5sp"
+                android:text="Completed"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnReturns"
+                android:layout_width="150dp"
+                android:layout_height="50sp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_pill"
+                android:padding="5sp"
+                android:text="Returns"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCancelled"
@@ -53,17 +83,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/btn_pill"
                 android:padding="5sp"
-                android:text="Cancelled" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSearch"
-                android:layout_width="150dp"
-                android:layout_height="50sp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn_pill"
-                android:padding="5sp"
-                android:text="Search" />
+                android:text="Cancelled"/>
         </LinearLayout>
     </HorizontalScrollView>
 </LinearLayout>

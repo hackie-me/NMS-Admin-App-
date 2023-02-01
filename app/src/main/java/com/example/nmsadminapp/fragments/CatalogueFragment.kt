@@ -11,13 +11,13 @@ import com.example.nmsadminapp.adapters.ViewPagerAdapter2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-class ProductsFragment : Fragment() {
+class CatalogueFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_products, container, false)
+        return inflater.inflate(R.layout.fragment_catalogue, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
