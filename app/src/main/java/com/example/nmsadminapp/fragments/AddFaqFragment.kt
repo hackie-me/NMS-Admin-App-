@@ -57,14 +57,15 @@ class AddFaqFragment : Fragment() {
             val response = FaqRepository.add(faq, requireContext())
             withContext(Dispatchers.Main) {
                 when (response.code) {
-                    200 -> {
+                    201 -> {
                         Helper.showToast(requireContext(), "Faq added successfully")
                         requireActivity().supportFragmentManager.beginTransaction()
                             .replace(R.id.fragmentContainer, FaqFragment())
                             .commit()
                     }
                     else -> {
-                        Helper.showToast(requireContext(), "Error adding faq")
+                        val code = response.code.toString()
+                        Helper.showToast(requireContext(), "Error adding faq, try again $code")
                     }
                 }
             }

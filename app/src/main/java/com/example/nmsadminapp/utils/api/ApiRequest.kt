@@ -10,9 +10,10 @@ class ApiRequest {
 
 
         // TODO: Change this to your own server URL
-        // private const val BASE_URL = "http://192.168.56.1/nms/api/" // College IP
-//        private const val BASE_URL = "http://192.168.248.71/nms/api/" // Home IP
-         private const val BASE_URL = "https://hardik.works/nms/api/" // Personal IP
+        // private const val BASE_URL = "http://192.168.54.1/nms/api/" // College IP
+        // private const val BASE_URL = "http://192.168.248.71/nms/api/" // Home IP [Rahul]
+        private const val BASE_URL = "http://192.168.1.2/nms/api/" // Home IP [Hardik]
+        // private const val BASE_URL = "https://hardik.works/nms/api/" // Personal IP
 
         // Endpoints for Handling Admin
         const val URL_REGISTER = "${BASE_URL}admin/register.php"
