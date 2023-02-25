@@ -1,5 +1,6 @@
 package com.example.nmsadminapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import kotlinx.coroutines.withContext
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
+@SuppressLint("CustomSplashScreen")
 class SplashscreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,20 +33,11 @@ class SplashscreenActivity : AppCompatActivity() {
                 // Fetch New Token from API
                 CoroutineScope(Dispatchers.IO).launch {
                     val repository = AdminRepository()
-                    val response =
-                        AdminRepository.refreshToken(Authentication.getToken(this@SplashscreenActivity)!!)
+                    val response = AdminRepository.refreshToken(Authentication.getToken(this@SplashscreenActivity)!!)
                     if (response.code == 200) {
-                        Authentication.storeToken(
-                            this@SplashscreenActivity,
-                            response.data!!.toString()
-                        )
+                        Authentication.storeToken(this@SplashscreenActivity, response.data!!.toString())
                         withContext(Dispatchers.Main) {
-                            startActivity(
-                                Intent(
-                                    this@SplashscreenActivity,
-                                    MainActivity::class.java
-                                )
-                            )
+                            startActivity(Intent(this@SplashscreenActivity, MainActivity::class.java))
                             finish()
                         }
                     }

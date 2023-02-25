@@ -35,43 +35,49 @@ android {
     buildFeatures {
         viewBinding true
     }
-}
 
-dependencies {
+    dependencies {
 
-    implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.6.0'
-    implementation 'com.google.android.material:material:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-    implementation 'com.google.firebase:firebase-crashlytics:18.3.3'
-    implementation 'com.google.firebase:firebase-analytics:21.2.0'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation 'com.google.code.gson:gson:2.10'
-    implementation "com.squareup.okhttp3:okhttp:4.10.0"
-    implementation "androidx.fragment:fragment-ktx:1.5.5"
-    implementation "com.google.android.material:material:1.7.0"
+        implementation 'androidx.core:core-ktx:1.9.0'
+        implementation 'androidx.appcompat:appcompat:1.6.1'
+        implementation 'com.google.android.material:material:1.8.0'
+        implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+        implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+        implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+        implementation 'com.google.firebase:firebase-crashlytics:18.3.5'
+        implementation 'com.google.firebase:firebase-analytics:21.2.0'
+        implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+        testImplementation 'junit:junit:4.13.2'
+        androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+        androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+        implementation 'com.google.code.gson:gson:2.10'
+        implementation "com.squareup.okhttp3:okhttp:4.10.0"
+        implementation "androidx.fragment:fragment-ktx:1.5.5"
+        implementation "com.google.android.material:material:1.8.0"
 
-    // viewpager2
-    implementation 'androidx.viewpager2:viewpager2:1.0.0'
-    // tab layout
-    implementation 'com.google.android.material:material:1.9.0-alpha01'
+        // viewpager2
+        implementation 'androidx.viewpager2:viewpager2:1.0.0'
+        // tab layout
+        implementation 'com.google.android.material:material:1.9.0-alpha02'
 
-    implementation "com.airbnb.android:lottie:5.2.0"
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'com.github.bumptech.glide:glide:4.14.2'
+        implementation "com.airbnb.android:lottie:5.2.0"
+        implementation 'androidx.recyclerview:recyclerview:1.2.1'
+        implementation 'com.github.bumptech.glide:glide:4.14.2'
 
-    // Rounded Image View
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
+        // Rounded Image View
+        implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    // Floating Action Buttons
-    implementation 'com.github.clans:fab:1.6.4'
+        // Floating Action Buttons
+        implementation 'com.github.clans:fab:1.6.4'
 
-    // Decode JWT
-    implementation 'com.auth0.android:jwtdecode:2.0.2'
+        // Decode JWT
+        implementation 'com.auth0.android:jwtdecode:2.0.2'
 
+        // Sti-berry Charts
+        implementation 'com.github.STRAIBERRY-AI-INC:Straiberry-charts:1.1.0'
+
+        implementation 'com.github.traex.expandablelayout:library:1.2.2'
+
+
+    }
 }
