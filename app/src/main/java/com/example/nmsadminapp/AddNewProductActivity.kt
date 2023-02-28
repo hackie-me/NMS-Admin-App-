@@ -52,6 +52,25 @@ class AddNewProductActivity : AppCompatActivity() {
         displayStatusList()
         displayUnitList()
 
+        // If its an edit product
+        if (intent.hasExtra("editMode")) {
+            // Get the product from the intent
+            val product = Gson().fromJson(Helper.fetchSharedPreference(this, "editProductModel"), ProductModel::class.java)
+            // Set the product details to the views
+            productName.setText(product.productName)
+            productDescription.setText(product.productDescription)
+            productPrice.setText(product.productPrice)
+            productMrp.setText(product.productMrp)
+            productDiscount.setText(product.productDiscount)
+            productStock.setText(product.productStock)
+            productBrandName.setText(product.productBrandName)
+            productExpiryDate.setText(product.productExpiryDate)
+            productIngredients.setText(product.productIngredients)
+
+            // Update the button text
+            btnAddProduct.text = "Update Product"
+        }
+
         // Set on click listener on thumbnail
         btnSelectThumbnail.setOnClickListener {
             // TODO: Open the gallery and select a thumbnail
@@ -79,8 +98,17 @@ class AddNewProductActivity : AppCompatActivity() {
 
         // Set on click listener on Add Product
         btnAddProduct.setOnClickListener {
-            // Add the product to the database
-            addNewProduct()
+            // Validate the data
+            if (validateData()) {
+                // If its an edit product
+                if (intent.hasExtra("editMode")) {
+                    // Update the product
+                    updateProduct()
+                } else {
+                    // Create a new product
+                    addNewProduct()
+                }
+            }
         }
     }
 
@@ -201,6 +229,67 @@ class AddNewProductActivity : AppCompatActivity() {
                             Helper.showToast(
                                 this@AddNewProductActivity,
                                 "Product Added Successfully"
+                            )
+                            finish()
+                        }
+                        else -> {
+                            Helper.showToast(
+                                this@AddNewProductActivity,
+                                "Error Occurred : ${response.code}"
+                            )
+                        }
+                    }
+                }
+            } catch (ex: Exception) {
+                Log.d("Error", ex.toString())
+            }
+        }
+    }
+
+    // Function to update the product
+    private fun updateProduct(){
+        if (!validateData()) {
+            Helper.showToast(this, "Please fill all the fields")
+            return
+        }
+
+        // get the data from the views
+        val productName = productName.text.toString()
+        val productDescription = productDescription.text.toString()
+        val productPrice = productPrice.text.toString()
+        val productMrp = productMrp.text.toString()
+        val productDiscount = productDiscount.text.toString()
+        val productBrandName = productBrandName.text.toString()
+        val productExpiryDate = productExpiryDate.text.toString()
+        val productIngredients = productIngredients.text.toString()
+        val productStatus = productStatusSpinner.selectedItem.toString()
+        val productUnit = productUnitSpinner.selectedItem.toString()
+        val productStock = productStock.text.toString()
+
+        val productModel = ProductModel(
+            productName = productName,
+            productDescription = productDescription,
+            productPrice = productPrice,
+            productMrp = productMrp,
+            productDiscount = productDiscount,
+            productBrandName = productBrandName,
+            productExpiryDate = productExpiryDate,
+            productIngredients = productIngredients,
+            productStock = productStock,
+            productStatus = productStatus,
+            productUnit = productUnit,
+            productCategoryId = productCategoryId
+        )
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = ProductRepository.update(productModel, this@AddNewProductActivity)
+                withContext(Dispatchers.Main) {
+                    when (response.code) {
+                        204 -> {
+                            Helper.showToast(
+                                this@AddNewProductActivity,
+                                "Product Updated Successfully"
                             )
                             finish()
                         }

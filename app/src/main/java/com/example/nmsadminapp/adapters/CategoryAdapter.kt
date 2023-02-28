@@ -50,10 +50,7 @@ class CategoryAdapter(
     }
 
     // return the number of the items in the list
-    override fun getItemCount(): Int {
-        return category.size
-    }
-
+    override fun getItemCount(): Int = category.size
 
     interface ClickListener {
         fun onEditClick(category: CategoryModel)
@@ -65,13 +62,13 @@ class CategoryAdapter(
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val categoryImage: ImageView = itemView.findViewById(R.id.categoryImage)
         val categoryName: TextView = itemView.findViewById(R.id.category_name)
-        private val categoryDeleteButton: ImageView =
-            itemView.findViewById(R.id.deleteCategory)
 
         fun bind(category: CategoryModel, clickListener: ClickListener) {
-
             itemView.findViewById<ImageView>(R.id.deleteCategory).setOnClickListener {
                 clickListener.onDeleteClick(category)
+            }
+            itemView.setOnClickListener{
+                clickListener.onEditClick(category)
             }
         }
     }

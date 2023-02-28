@@ -110,53 +110,39 @@ class TabCategoryFragment : Fragment(), CategoryAdapter.ClickListener {
             "Delete Category",
             "Are you sure you want to delete this category?",
             "Yes",
-            "No", {
-                CoroutineScope(Dispatchers.IO).launch {
-                    try {
-                        val response =
-                            CategoryRepository.delete(category.categoryId, requireContext())
-                        // Log category id
-                        Log.d("TabCategoryFragment", "Category id: ${category.categoryId}")
-                        when (response.code) {
-                            200 -> {
-                                // Log Success Message
-                                Log.d("TabCategoryFragment", "Category deleted successfully")
-                                // Update the UI
-                                fetchCategories(requireView())
-                            }
-                            401 -> {
-                                // Log Error Code
-                                Log.e(
-                                    "TabCategoryFragment",
-                                    "Error deleting category: ${response.data}"
-                                )
-                            }
-                            404 -> {
-                                // Log Error Code
-                                Log.e(
-                                    "TabCategoryFragment",
-                                    "Error deleting category: ${response.data}"
-                                )
-                            }
-                            500 -> {
-                                // Log Error Code
-                                Log.e(
-                                    "TabCategoryFragment",
-                                    "Error deleting category: ${response.data}"
-                                )
-                            }
-                            else -> {
-                                // Log Error Code
-                                Log.e(
-                                    "TabCategoryFragment",
-                                    "Error deleting category: ${response.data}"
-                                )
-                            }
-                        }
-                    } catch (ex: Exception) {
-                        Log.d("Error", ex.toString())
+            "No",
+            {deleteCategory(category)}
+            , {}
+        )
+    }
+
+    // Function to delete category
+    private fun deleteCategory(category: CategoryModel){
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = CategoryRepository.delete(category.categoryId, requireContext())
+                // Log category id
+                when (response.code) {
+                    200 -> {
+                        // Update the UI
+                        fetchCategories(requireView())
+                    }
+                    401 -> {
+                        Helper.showSnackBar(requireView(), "Error: ${response.data}")
+                    }
+                    404 -> {
+                        Helper.showSnackBar(requireView(), "Error: ${response.data}")
+                    }
+                    500 -> {
+                        Helper.showSnackBar(requireView(), "Error: ${response.data}")
+                    }
+                    else -> {
+                        Helper.showSnackBar(requireView(), "Error: ${response.data}")
                     }
                 }
-            }, {})
+            } catch (ex: Exception) {
+                Helper.showSnackBar(requireView(), "Error: ${ex.toString()}")
+            }
+        }
     }
 }

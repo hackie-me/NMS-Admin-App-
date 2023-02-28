@@ -16,6 +16,6 @@ data class ProductModel(
     @SerializedName("ingredients") val productIngredients: String = "",
     @SerializedName("status") val productStatus: String = "",
     @SerializedName("unit") val productUnit: String = "",
-    @SerializedName("stock") val productStock: String = "",
+    @SerializedName("quantity") val productStock: String = "",
     @SerializedName("category_id") val productCategoryId: String = "",
 )

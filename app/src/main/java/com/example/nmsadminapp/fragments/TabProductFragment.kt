@@ -23,7 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class TabProductFragment : Fragment() {
+class TabProductFragment : Fragment(), ProductAdapter.ClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,7 +75,8 @@ class TabProductFragment : Fragment() {
                                     View.VISIBLE
                                 view.findViewById<LinearLayout>(R.id.empty_product_view).visibility =
                                     View.GONE
-                                val productAdapter = ProductAdapter(products)
+                                val productAdapter =
+                                    ProductAdapter(products, this@TabProductFragment)
                                 view.findViewById<RecyclerView>(R.id.productTabRecyclerView).adapter =
                                     productAdapter
                             }
@@ -91,5 +92,54 @@ class TabProductFragment : Fragment() {
         }
     }
 
+    override fun onEditClick(productModel: ProductModel) {
+        // Navigate to the AddNewCategoryActivity
+        val intent = Intent(activity, AddNewProductActivity::class.java)
+        intent.putExtra("editMode", true)
 
+        // Store Category data in shared preferences
+        Helper.storeSharedPreference(
+            requireContext(),
+            "editProductModel",
+            Gson().toJson(productModel)
+        )
+        startActivity(intent)
+    }
+
+    override fun onDeleteClick(productModel: ProductModel) {
+        // Ask for confirmation
+        Helper.showConfirmationDialog(
+            requireContext(),
+            "Delete Product",
+            "Are you sure you want to delete this Product?",
+            "Yes",
+            "No", {
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        val response =
+                            ProductRepository.delete(productModel.productId, requireContext())
+                        when (response.code) {
+                            200 -> {
+                                // Update the UI
+                                fetchProducts(requireView())
+                            }
+                            401 -> {
+                                Helper.showSnackBar(requireView(), "Unauthorized")
+                            }
+                            404 -> {
+                                Helper.showSnackBar(requireView(), "Product not found")
+                            }
+                            500 -> {
+                                Helper.showSnackBar(requireView(), "Server Error")
+                            }
+                            else -> {
+                                Helper.showSnackBar(requireView(), "Something went wrong")
+                            }
+                        }
+                    } catch (ex: Exception) {
+                        Helper.showSnackBar(requireView(), "Error: $ex")
+                    }
+                }
+            }, {})
+    }
 }

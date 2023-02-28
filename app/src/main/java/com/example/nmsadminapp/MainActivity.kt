@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nmsadminapp.fragments.*
+import com.example.nmsadminapp.service.Authentication
 import com.example.nmsadminapp.utils.Helper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -24,6 +25,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Check if user is logged in
+        if (!Authentication.isLoggedIn(this)) {
+            // If user is not logged in, go to Login Activity
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         // Display Admin Name in the Action Bar
         val actionBar = supportActionBar
@@ -78,12 +87,6 @@ class MainActivity : AppCompatActivity() {
         Helper.removeSharedPreference(this, "token")
         finish()
         startActivity(Intent(this, LoginActivity::class.java))
-    }
-
-    // Function to exit the app
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finishAffinity()
     }
 
     // Function to handle bottom navigation item click

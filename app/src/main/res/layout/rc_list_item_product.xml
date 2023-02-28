@@ -84,7 +84,7 @@
                 android:layout_marginStart="@dimen/_45pxh">
 
                 <TextView
-                    android:id="@+id/product_stock"
+                    android:id="@+id/product_mrp"
                     android:layout_width="100sp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"

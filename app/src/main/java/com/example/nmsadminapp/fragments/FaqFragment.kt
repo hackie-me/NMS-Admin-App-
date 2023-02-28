@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ExpandableListAdapter
+import android.widget.ExpandableListView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.nmsadminapp.R
-import com.example.nmsadminapp.adapters.FaqAdapter
+import com.example.nmsadminapp.adapters.FaqListAdapter
 import com.example.nmsadminapp.models.FaqModel
 import com.example.nmsadminapp.repo.FaqRepository
 import com.example.nmsadminapp.utils.Helper
@@ -53,13 +53,11 @@ class FaqFragment : Fragment() {
                 when (response.code) {
                     200 -> {
                         val list = Gson().fromJson(response.data, Array<FaqModel>::class.java)
-                        val recyclerView = view.findViewById<RecyclerView>(R.id.faq_recycler_view)
-
-                        // set layout manager
-                        recyclerView.layoutManager =
-                            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                        // set adapter
-                        recyclerView.adapter = FaqAdapter(list)
+                        val listView = view.findViewById<ExpandableListView>(R.id.faq_list_view)
+                        val faqListAdapter = FaqListAdapter(requireContext(), list)
+                        val listAdapter: ExpandableListAdapter =
+                            faqListAdapter // cast to ExpandableListAdapter
+                        listView.setAdapter(listAdapter)
                     }
                     else -> {
                         Helper.showToast(requireContext(), "Error fetching faqs")
