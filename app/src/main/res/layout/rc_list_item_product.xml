@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,110 +11,95 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp">
+        android:padding="6dp">
 
         <ImageView
             android:id="@+id/product_thumbnail"
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_2pxh"
             android:layout_marginEnd="10sp"
-            android:adjustViewBounds="true"
-            android:contentDescription="Product Thumbnail"
-            android:scaleType="centerCrop" />
+            android:layout_marginStart="@dimen/_2pxh"
+            android:background="@color/color_blue_dark"
+            android:contentDescription="Product Thumbnail"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/_115pxh">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10pxh">
             <TextView
                 android:id="@+id/product_name"
-                android:layout_width="wrap_content"
+                android:layout_width="240sp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Product Name"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/deleteProduct"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
+                android:layout_gravity="end"
+                android:background="@drawable/ic_delete"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/product_perice_tag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:ellipsize="end"
-                        android:text="Rs."
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/product_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:ellipsize="end"
-                        android:text="150"
-                        android:textSize="24sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/product_stock_tag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:ellipsize="end"
-                        android:text="Stock:"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/product_stock"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:ellipsize="end"
-                        android:text="150"
-                        android:textSize="24sp" />
-                </LinearLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_20pxh">
+                <TextView
+                    android:id="@+id/product_price"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="$ 150.00"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/product_perice_tag"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:ellipsize="end"
+                    android:text="Sale Price"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_45pxh">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/editProduct"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/product_stock"
+                    android:layout_width="100sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="2sp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/color_secondary"
-                    android:text="Edit"
-                    android:textColor="@color/black"
-                    android:textSize="11sp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/deleteProduct"
-                    android:layout_width="0dp"
+                    android:ellipsize="end"
+                    android:text="$ 150.0"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/product_stock_tag"
+                    android:layout_width="100sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="2sp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/color_error"
-                    android:text="Delete"
-                    android:textColor="@color/white"
-                    android:textSize="11sp" />
+                    android:layout_marginTop="2dp"
+                    android:ellipsize="end"
+                    android:text="MRP"
+                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

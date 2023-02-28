@@ -65,15 +65,12 @@ class CategoryAdapter(
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val categoryImage: ImageView = itemView.findViewById(R.id.categoryImage)
         val categoryName: TextView = itemView.findViewById(R.id.category_name)
-        private val categoryEditButton: AppCompatButton = itemView.findViewById(R.id.editCategory)
-        private val categoryDeleteButton: AppCompatButton =
+        private val categoryDeleteButton: ImageView =
             itemView.findViewById(R.id.deleteCategory)
 
         fun bind(category: CategoryModel, clickListener: ClickListener) {
-            itemView.findViewById<Button>(R.id.editCategory).setOnClickListener {
-                clickListener.onEditClick(category)
-            }
-            itemView.findViewById<Button>(R.id.deleteCategory).setOnClickListener {
+
+            itemView.findViewById<ImageView>(R.id.deleteCategory).setOnClickListener {
                 clickListener.onDeleteClick(category)
             }
         }

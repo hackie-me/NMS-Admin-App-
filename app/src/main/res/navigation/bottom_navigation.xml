@@ -13,11 +13,11 @@
     <fragment
         android:id="@+id/invoiceFragment"
         android:name="com.example.nmsadminapp.fragments.InvoiceFragment"
-        android:label="fragment_manage"
+        android:label="fragment_Invoice"
         tools:layout="@layout/fragment_invoice" />
     <fragment
         android:id="@+id/ordersFragment"
-        android:name="com.example.nmsadminapp.fragments.OrdersFragment"
+        android:name="com.example.nmsadminapp.fragments.rc"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" />
     <fragment

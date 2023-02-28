@@ -91,7 +91,7 @@ class AccountFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        // convert json string to json object
+         // convert json string to json object
         adminName = Helper.getDataFromToken(requireContext(), "name")!!
         adminProfile = Helper.getDataFromToken(requireContext(), "image")!!
         // if admin profile is blank then set default profile picture

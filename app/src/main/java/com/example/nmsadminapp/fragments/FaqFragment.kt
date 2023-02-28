@@ -1,7 +1,6 @@
 package com.example.nmsadminapp.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,8 @@ import kotlinx.coroutines.withContext
 
 class FaqFragment : Fragment() {
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_faq, container, false)
@@ -33,7 +33,9 @@ class FaqFragment : Fragment() {
         // Add Faq button click listener to navigate to AddFaqFragment
         view.findViewById<View>(R.id.add_faq_button).setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, AddFaqFragment()).addToBackStack(null).commit()
+                .replace(R.id.fragmentContainer, AddFaqFragment())
+                .addToBackStack(null)
+                .commit()
         }
     }
 
@@ -52,8 +54,6 @@ class FaqFragment : Fragment() {
                     200 -> {
                         val list = Gson().fromJson(response.data, Array<FaqModel>::class.java)
                         val recyclerView = view.findViewById<RecyclerView>(R.id.faq_recycler_view)
-
-                        Log.d("FAQ", list.toString())
 
                         // set layout manager
                         recyclerView.layoutManager =

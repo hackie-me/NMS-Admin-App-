@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.OrdersFragment"
-    android:background="@color/background">
+    tools:context=".fragments.OrdersFragment">
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/order_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -86,4 +87,8 @@
                 android:text="Cancelled"/>
         </LinearLayout>
     </HorizontalScrollView>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

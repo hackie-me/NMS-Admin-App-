@@ -64,8 +64,7 @@ class AddFaqFragment : Fragment() {
                             .commit()
                     }
                     else -> {
-                        val code = response.code.toString()
-                        Helper.showToast(requireContext(), "Error adding faq, try again $code")
+                        Helper.showToast(requireContext(), "Error adding faq")
                     }
                 }
             }

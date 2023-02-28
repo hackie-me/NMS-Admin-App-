@@ -53,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                             finish()
                         } else {
+                            Helper.showToast(this@LoginActivity, response.code.toString())
                             Helper.showAlertDialog(
                                 this@LoginActivity,
                                 "Error",
