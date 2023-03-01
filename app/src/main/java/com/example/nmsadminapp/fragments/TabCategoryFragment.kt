@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nmsadminapp.AddNewCategoryActivity
@@ -16,6 +15,7 @@ import com.example.nmsadminapp.adapters.CategoryAdapter
 import com.example.nmsadminapp.models.CategoryModel
 import com.example.nmsadminapp.repo.CategoryRepository
 import com.example.nmsadminapp.utils.Helper
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,7 +36,7 @@ class TabCategoryFragment : Fragment(), CategoryAdapter.ClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         // Set the click listeners to add new category button
-        view.findViewById<AppCompatButton>(R.id.btnAddNewCategory).setOnClickListener {
+        view.findViewById<FloatingActionButton>(R.id.btnAddNewCategory).setOnClickListener {
             // Navigate to the AddNewCategoryActivity
             val intent = Intent(activity, AddNewCategoryActivity::class.java)
             startActivity(intent)

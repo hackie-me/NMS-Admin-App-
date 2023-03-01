@@ -68,11 +68,15 @@ class AccountFragment : Fragment() {
         }
         // Terms and Conditions
         tvTermsAndConditions.setOnClickListener {
-            Helper.showSnackBar(requireView(), "Terms and Conditions")
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainer, TermsAndConditionFragment())
+                ?.commit()
         }
         // Privacy Policy
         tvPrivacyPolicy.setOnClickListener {
-            Helper.showSnackBar(requireView(), "Privacy Policy")
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainer, PrivacyPolicyFragment())
+                ?.commit()
         }
         // FAQ
         tvFAQ.setOnClickListener {

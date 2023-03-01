@@ -55,8 +55,7 @@ class FaqFragment : Fragment() {
                         val list = Gson().fromJson(response.data, Array<FaqModel>::class.java)
                         val listView = view.findViewById<ExpandableListView>(R.id.faq_list_view)
                         val faqListAdapter = FaqListAdapter(requireContext(), list)
-                        val listAdapter: ExpandableListAdapter =
-                            faqListAdapter // cast to ExpandableListAdapter
+                        val listAdapter: ExpandableListAdapter = faqListAdapter // cast to ExpandableListAdapter
                         listView.setAdapter(listAdapter)
                     }
                     else -> {

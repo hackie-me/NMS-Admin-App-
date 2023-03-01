@@ -17,6 +17,7 @@ import com.example.nmsadminapp.adapters.ProductAdapter
 import com.example.nmsadminapp.models.ProductModel
 import com.example.nmsadminapp.repo.ProductRepository
 import com.example.nmsadminapp.utils.Helper
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,7 +36,7 @@ class TabProductFragment : Fragment(), ProductAdapter.ClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // open add new product activity
-        view.findViewById<Button>(R.id.btnAddNewProduct).setOnClickListener {
+        view.findViewById<FloatingActionButton>(R.id.btnAddNewProduct).setOnClickListener {
             // Navigate to the AddNewProductActivity
             val intent = Intent(activity, AddNewProductActivity::class.java)
             startActivity(intent)

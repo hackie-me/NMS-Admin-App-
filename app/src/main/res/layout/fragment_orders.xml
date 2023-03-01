@@ -1,94 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.OrdersFragment">
+    tools:context=".fragments.CatalogueFragment"
+    android:background="@color/background">
 
-    <HorizontalScrollView
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:tabBackground="@color/color_primary"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabTextColor="@android:color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-        <LinearLayout
-            android:id="@+id/order_tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnNew"
-                android:layout_width="100sp"
-                android:layout_height="50sp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn_pill"
-                android:padding="5sp"
-                android:text="New" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnConfirmed"
-                android:layout_width="150sp"
-                android:layout_height="50sp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn_pill"
-                android:padding="5sp"
-                android:text="Confirmed" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnShipmentReady"
-                android:layout_width="150dp"
-                android:layout_height="50sp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn_pill"
-                android:padding="5sp"
-                android:text="Shipment Ready" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnInTransit"
-                android:layout_width="150dp"
-                android:layout_height="50sp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn_pill"
-                android:padding="5sp"
-                android:text="In Transit" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnCompleted"
-                android:layout_width="150dp"
-                android:layout_height="50sp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn_pill"
-                android:padding="5sp"
-                android:text="Completed"/>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnReturns"
-                android:layout_width="150dp"
-                android:layout_height="50sp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn_pill"
-                android:padding="5sp"
-                android:text="Returns"/>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnCancelled"
-                android:layout_width="150dp"
-                android:layout_height="50sp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn_pill"
-                android:padding="5sp"
-                android:text="Cancelled"/>
-        </LinearLayout>
-    </HorizontalScrollView>
+    <!--    Viewpager 2-->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
 </LinearLayout>

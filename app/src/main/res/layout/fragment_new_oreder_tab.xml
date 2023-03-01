@@ -29,18 +29,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:text="Create your first category to get started"
+            android:text="No Orders Yet"
             android:textFontWeight="900"
             android:textSize="22sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="Showcase your products and services by creating categories"
-            android:textAlignment="center"
-            android:textSize="16sp" />
+
 
 
     </LinearLayout>
@@ -63,15 +56,5 @@
         app:spanCount="2" />
 
     <!-- Add Category Button -->
-    <Button
-        android:id="@+id/btnAddNewCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:text="Add new Category"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
