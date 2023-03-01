@@ -1,0 +1,30 @@
+package com.nms.nmsadminapp.models
+
+data class PurchaseModel(
+    val purchaseId: String,
+    val purchaseDate: String,
+    val purchaseTime: String,
+    val purchaseStatus: String,
+    val purchasePaymentMethod: String,
+    val purchasePaymentStatus: String,
+    val purchaseTotalAmount: String,
+    val purchaseDeliveryCharge: String,
+    val purchaseTotalItems: String,
+    val purchaseAddressId: String,
+    val purchaseUserId: String,
+    val purchaseUserName: String,
+    val purchaseUserMobile: String,
+    val purchaseUserEmail: String,
+    val purchaseUserAddress: String,
+    val purchaseUserPincode: String,
+    val purchaseUserCity: String,
+    val purchaseUserState: String,
+    val purchaseUserCountry: String,
+    val purchaseUserLandmark: String,
+    val purchaseUserAlternateMobile: String,
+    val purchaseUserAddressType: String,
+    val purchaseUserAddressStatus: String,
+    val purchaseUserAddressAddedOn: String,
+    val purchaseUserAddressUpdatedOn: String,
+    val purchaseItems: String
+)

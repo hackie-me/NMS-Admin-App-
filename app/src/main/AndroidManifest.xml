@@ -44,7 +44,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".AddNewCategoryActivity"
+            android:name="com.nms.admin.AddNewCategoryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

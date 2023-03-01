@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.nmsadminapp'
+    namespace 'com.nms.admin'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.nmsadminapp"
+        applicationId "com.nms.admin"
         minSdk 23
         targetSdk 33
         versionCode 1
@@ -78,6 +78,9 @@ android {
 
         implementation 'com.github.traex.expandablelayout:library:1.2.2'
 
+        // Flowing Drawer
+        implementation 'com.mxn.soul:flowingdrawer-core:2.1.0'
+        implementation 'com.nineoldandroids:library:2.4.0'
 
     }
 }
