@@ -1,11 +1,11 @@
-package com.nms.nmsadminapp.fragments
+package com.nms.admin.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.admin.R
+import com.nms.admin.R
 
 class TabOrderFragment : Fragment() {
 

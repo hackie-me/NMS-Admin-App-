@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.utils
+package com.nms.admin.utils
 
 object HttpResponseCode
 {

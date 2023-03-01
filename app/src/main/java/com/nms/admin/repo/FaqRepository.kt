@@ -1,10 +1,10 @@
-package com.nms.nmsadminapp.repo
+package com.nms.admin.repo
 
 import android.content.Context
-import com.example.admin.models.FaqModel
-import com.example.admin.utils.Helper
-import com.example.admin.utils.api.ApiRequest
-import com.example.admin.utils.api.ApiResponse
+import com.nms.admin.models.FaqModel
+import com.nms.admin.utils.Helper
+import com.nms.admin.utils.api.ApiRequest
+import com.nms.admin.utils.api.ApiResponse
 import com.google.gson.Gson
 
 class FaqRepository {

@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp
+package com.nms.admin
 
 import org.junit.Test
 

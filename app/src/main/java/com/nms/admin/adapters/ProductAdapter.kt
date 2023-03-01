@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.adapters
+package com.nms.admin.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.admin.R
-import com.example.admin.models.ProductModel
+import com.nms.admin.R
+import com.nms.admin.models.ProductModel
 
 class ProductAdapter(
     private val products: Array<ProductModel>,

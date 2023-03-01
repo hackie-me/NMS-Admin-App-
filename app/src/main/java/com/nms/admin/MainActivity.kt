@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp
+package com.nms.admin
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.example.admin.fragments.*
-import com.example.admin.service.Authentication
-import com.example.admin.utils.Helper
+import com.nms.admin.fragments.*
+import com.nms.admin.service.Authentication
+import com.nms.admin.utils.Helper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

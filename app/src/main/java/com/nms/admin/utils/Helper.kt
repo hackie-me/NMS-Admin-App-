@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.utils
+package com.nms.admin.utils
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -9,8 +9,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
-import com.example.admin.fragments.HomeFragment
-import com.example.admin.service.Authentication
+import com.nms.admin.fragments.HomeFragment
+import com.nms.admin.service.Authentication
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.JsonObject

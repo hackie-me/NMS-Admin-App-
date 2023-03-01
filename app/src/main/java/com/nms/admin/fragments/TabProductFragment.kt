@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.fragments
+package com.nms.admin.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,12 +10,12 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.admin.AddNewProductActivity
-import com.example.admin.R
-import com.example.admin.adapters.ProductAdapter
-import com.example.admin.models.ProductModel
-import com.example.admin.repo.ProductRepository
-import com.example.admin.utils.Helper
+import com.nms.admin.AddNewProductActivity
+import com.nms.admin.R
+import com.nms.admin.adapters.ProductAdapter
+import com.nms.admin.models.ProductModel
+import com.nms.admin.repo.ProductRepository
+import com.nms.admin.utils.Helper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope

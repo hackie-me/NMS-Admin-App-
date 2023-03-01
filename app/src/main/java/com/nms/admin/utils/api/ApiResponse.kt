@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.utils.api
+package com.nms.admin.utils.api
 
 data class ApiResponse(
     val code: Int = 0,

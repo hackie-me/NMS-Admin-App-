@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.models
+package com.nms.admin.models
 
 import com.google.gson.annotations.SerializedName
 

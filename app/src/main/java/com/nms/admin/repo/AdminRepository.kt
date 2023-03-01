@@ -1,8 +1,8 @@
-package com.nms.nmsadminapp.repo
+package com.nms.admin.repo
 
-import com.example.admin.models.AdminModel
-import com.example.admin.utils.api.ApiRequest
-import com.example.admin.utils.api.ApiResponse
+import com.nms.admin.models.AdminModel
+import com.nms.admin.utils.api.ApiRequest
+import com.nms.admin.utils.api.ApiResponse
 import com.google.gson.Gson
 
 class AdminRepository {

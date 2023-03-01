@@ -1,11 +1,11 @@
-package com.nms.nmsadminapp.adapters
+package com.nms.admin.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.admin.fragments.TabCategoryFragment
-import com.example.admin.fragments.TabProductFragment
+import com.nms.admin.fragments.TabCategoryFragment
+import com.nms.admin.fragments.TabProductFragment
 
 class ViewPagerAdapter2(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {

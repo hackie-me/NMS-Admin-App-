@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp
+package com.nms.admin
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -7,11 +7,11 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.admin.models.CategoryModel
-import com.example.admin.models.ProductModel
-import com.example.admin.repo.CategoryRepository
-import com.example.admin.repo.ProductRepository
-import com.example.admin.utils.Helper
+import com.nms.admin.models.CategoryModel
+import com.nms.admin.models.ProductModel
+import com.nms.admin.repo.CategoryRepository
+import com.nms.admin.repo.ProductRepository
+import com.nms.admin.utils.Helper
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

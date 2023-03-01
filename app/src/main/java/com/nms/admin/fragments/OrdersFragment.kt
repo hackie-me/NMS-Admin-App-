@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.fragments
+package com.nms.admin.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.example.admin.R
-import com.example.admin.adapters.ViewPagerOrderAdapter
+import com.nms.admin.R
+import com.nms.admin.adapters.ViewPagerOrderAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 

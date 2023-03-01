@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:659562026163:android:e1c8da096382a5ed258cc6",
         "android_client_info": {
-          "package_name": "com.example.nmsadminapp"
+          "package_name": "com.nms.admin"
         }
       },
       "oauth_client": [

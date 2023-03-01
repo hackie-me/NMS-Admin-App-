@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.utils
+package com.nms.admin.utils
 
 import android.Manifest
 import android.content.pm.PackageManager

@@ -1,7 +1,7 @@
-package com.nms.nmsadminapp.service
+package com.nms.admin.service
 
 import android.content.Context
-import com.example.admin.utils.Helper
+import com.nms.admin.utils.Helper
 
 class Authentication(
     private val context: Context

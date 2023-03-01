@@ -1,10 +1,10 @@
-package com.nms.nmsadminapp
+package com.nms.admin
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.admin.utils.Helper
+import com.nms.admin.utils.Helper
 
 class ConnectionLost : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

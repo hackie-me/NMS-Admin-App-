@@ -78,9 +78,5 @@ android {
 
         implementation 'com.github.traex.expandablelayout:library:1.2.2'
 
-        // Flowing Drawer
-        implementation 'com.mxn.soul:flowingdrawer-core:2.1.0'
-        implementation 'com.nineoldandroids:library:2.4.0'
-
     }
 }

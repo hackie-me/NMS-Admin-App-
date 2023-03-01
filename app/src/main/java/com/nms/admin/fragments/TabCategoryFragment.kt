@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.fragments
+package com.nms.admin.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,11 +9,11 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.admin.R
-import com.example.admin.adapters.CategoryAdapter
-import com.example.admin.models.CategoryModel
-import com.example.admin.repo.CategoryRepository
-import com.example.admin.utils.Helper
+import com.nms.admin.R
+import com.nms.admin.adapters.CategoryAdapter
+import com.nms.admin.models.CategoryModel
+import com.nms.admin.repo.CategoryRepository
+import com.nms.admin.utils.Helper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
@@ -37,7 +37,7 @@ class TabCategoryFragment : Fragment(), CategoryAdapter.ClickListener {
         // Set the click listeners to add new category button
         view.findViewById<FloatingActionButton>(R.id.btnAddNewCategory).setOnClickListener {
             // Navigate to the AddNewCategoryActivity
-            val intent = Intent(activity, com.nms.nmsadminapp.AddNewCategoryActivity::class.java)
+            val intent = Intent(activity, com.nms.admin.AddNewCategoryActivity::class.java)
             startActivity(intent)
         }
     }
@@ -94,7 +94,7 @@ class TabCategoryFragment : Fragment(), CategoryAdapter.ClickListener {
     // EditClickListener methods
     override fun onEditClick(category: CategoryModel) {
         // Navigate to the AddNewCategoryActivity
-        val intent = Intent(activity, com.nms.nmsadminapp.AddNewCategoryActivity::class.java)
+        val intent = Intent(activity, com.nms.admin.AddNewCategoryActivity::class.java)
 
         // Store Category data in shared preferences
         Helper.storeSharedPreference(requireContext(), "category", Gson().toJson(category))

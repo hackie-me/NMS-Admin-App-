@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.models
+package com.nms.admin.models
 
 data class PurchaseModel(
     val purchaseId: String,

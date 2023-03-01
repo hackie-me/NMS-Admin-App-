@@ -1,9 +1,9 @@
-package com.nms.nmsadminapp.repo
+package com.nms.admin.repo
 
 import android.content.Context
-import com.example.admin.service.Authentication
-import com.example.admin.utils.api.ApiRequest
-import com.example.admin.utils.api.ApiResponse
+import com.nms.admin.service.Authentication
+import com.nms.admin.utils.api.ApiRequest
+import com.nms.admin.utils.api.ApiResponse
 import okhttp3.MultipartBody
 
 class UploadImageRepository {

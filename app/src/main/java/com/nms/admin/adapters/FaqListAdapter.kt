@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.adapters
+package com.nms.admin.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
-import com.example.admin.R
-import com.example.admin.models.FaqModel
+import com.nms.admin.R
+import com.nms.admin.models.FaqModel
 
 class FaqListAdapter(
     context: Context,

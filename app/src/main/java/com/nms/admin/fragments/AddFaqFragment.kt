@@ -1,14 +1,14 @@
-package com.nms.nmsadminapp.fragments
+package com.nms.admin.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.admin.R
-import com.example.admin.models.FaqModel
-import com.example.admin.repo.FaqRepository
-import com.example.admin.utils.Helper
+import com.nms.admin.R
+import com.nms.admin.models.FaqModel
+import com.nms.admin.repo.FaqRepository
+import com.nms.admin.utils.Helper
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

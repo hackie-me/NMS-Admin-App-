@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.fragments
+package com.nms.admin.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import com.example.admin.R
-import com.example.admin.databinding.ActivityMainBinding
+import com.nms.admin.R
+import com.nms.admin.databinding.ActivityMainBinding
 import com.straiberry.android.charts.extenstions.HorizontalChartXLabels
 import com.straiberry.android.charts.extenstions.horizontalChartData
 import com.straiberry.android.charts.tooltip.SliderTooltip

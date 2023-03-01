@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp
+package com.nms.admin
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,10 +8,10 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.admin.models.CategoryModel
-import com.example.admin.repo.CategoryRepository
-import com.example.admin.utils.HandlePermissions
-import com.example.admin.utils.Helper
+import com.nms.admin.models.CategoryModel
+import com.nms.admin.repo.CategoryRepository
+import com.nms.admin.utils.HandlePermissions
+import com.nms.admin.utils.Helper
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +30,7 @@ class AddNewCategoryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.admin.R.layout.activity_add_new_category)
+        setContentView(com.nms.admin.R.layout.activity_add_new_category)
 
         // Initialize the views
         initViews()
@@ -58,12 +58,12 @@ class AddNewCategoryActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        txtCategoryName = findViewById(com.example.admin.R.id.etCategoryName)
-        txtCategoryDescription = findViewById(com.example.admin.R.id.etCategoryDescription)
-        btnAddCategory = findViewById(com.example.admin.R.id.btnAddCategory)
-        btnCancel = findViewById(com.example.admin.R.id.btnCancel)
-        ivCategoryImage = findViewById(com.example.admin.R.id.ivCategoryImage)
-        btnSelectImage = findViewById(com.example.admin.R.id.btnSelectImage)
+        txtCategoryName = findViewById(com.nms.admin.R.id.etCategoryName)
+        txtCategoryDescription = findViewById(com.nms.admin.R.id.etCategoryDescription)
+        btnAddCategory = findViewById(com.nms.admin.R.id.btnAddCategory)
+        btnCancel = findViewById(com.nms.admin.R.id.btnCancel)
+        ivCategoryImage = findViewById(com.nms.admin.R.id.ivCategoryImage)
+        btnSelectImage = findViewById(com.nms.admin.R.id.btnSelectImage)
 
         // get permission to access the gallery
         HandlePermissions.checkAndRequestPermissions(this)

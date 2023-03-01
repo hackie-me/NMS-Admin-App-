@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.fragments
+package com.nms.admin.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.admin.LoginActivity
-import com.example.admin.R
-import com.example.admin.UpdateAdminProfileActivity
-import com.example.admin.utils.Helper
+import com.nms.admin.LoginActivity
+import com.nms.admin.R
+import com.nms.admin.UpdateAdminProfileActivity
+import com.nms.admin.utils.Helper
 import de.hdodenhof.circleimageview.CircleImageView
 
 class AccountFragment : Fragment() {
@@ -87,15 +87,18 @@ class AccountFragment : Fragment() {
         }
         // logout
         tvLogout.setOnClickListener {
-            Helper.removeSharedPreference(requireContext(), "token")
-            Helper.showToast(requireContext(), "Logged out successfully")
-            startActivity(Intent(requireContext(), LoginActivity::class.java), null)
+            Helper.showConfirmationDialog(requireContext(), "Logout", "Are you sure you want to logout?", "Yes", "No", {
+                // if user click on yes then logout
+                Helper.removeSharedPreference(requireContext(), "token")
+                Helper.showToast(requireContext(), "Logged out successfully")
+                startActivity(Intent(requireContext(), LoginActivity::class.java), null)
+            }, {})
         }
     }
 
     override fun onResume() {
         super.onResume()
-         // convert json string to json object
+        // convert json string to json object
         adminName = Helper.getDataFromToken(requireContext(), "name")!!
         adminProfile = Helper.getDataFromToken(requireContext(), "image")!!
         // if admin profile is blank then set default profile picture

@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp.utils.api
+package com.nms.admin.utils.api
 
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient

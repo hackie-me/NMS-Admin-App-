@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp
+package com.nms.admin
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,10 +7,10 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.admin.models.AdminModel
-import com.example.admin.repo.AdminRepository
-import com.example.admin.service.Authentication
-import com.example.admin.utils.Helper
+import com.nms.admin.models.AdminModel
+import com.nms.admin.repo.AdminRepository
+import com.nms.admin.service.Authentication
+import com.nms.admin.utils.Helper
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

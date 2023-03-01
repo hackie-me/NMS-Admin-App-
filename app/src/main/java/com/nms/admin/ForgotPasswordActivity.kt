@@ -1,4 +1,4 @@
-package com.nms.nmsadminapp
+package com.nms.admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
