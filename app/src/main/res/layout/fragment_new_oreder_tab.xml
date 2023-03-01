@@ -33,9 +33,6 @@
             android:textFontWeight="900"
             android:textSize="22sp" />
 
-
-
-
     </LinearLayout>
 
     <!-- If there are categories -->
