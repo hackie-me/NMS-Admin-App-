@@ -1,20 +1,14 @@
 package com.nms.admin.models
 
 data class UsersModel(
-    val userId: String,
-    val userName: String,
-    val userMobile: String,
-    val userEmail: String,
-    val userImage: String,
-    val userAddress: String,
-    val userPincode: String,
-    val userCity: String,
-    val userState: String,
-    val userCountry: String,
-    val userLandmark: String,
-    val userAlternateMobile: String,
-    val userAddressType: String,
-    val userAddressStatus: String,
-    val userAddressAddedOn: String,
-    val userAddressUpdatedOn: String
+    val userid: String = "",
+    val full_name: String = "",
+    val address: String = "",
+    val phone: String = "",
+    val status: String = "",
+    val email: String = "",
+    val password: String = "",
+    val image: String = "",
+    val created_at: String = "",
+    val updated_at: String = ""
 )

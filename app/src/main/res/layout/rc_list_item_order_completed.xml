@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,94 +19,109 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/Orders_number"
+                android:id="@+id/tvOrderId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="5sp"
+                android:layout_marginTop="5dp"
                 android:text="# ORD-0001"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-            <ImageView
-                android:id="@+id/launch"
+
+            <LinearLayout
+                android:id="@+id/llInvoiceNumberLink"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="2sp"
-                android:background="@drawable/ic_launch"/>
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2sp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/ic_launch" />
+
+                <TextView
+                    android:id="@+id/tvInvoiceNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/sofia_pro"
+                    android:text="INV-0001"
+                    android:textColor="@color/primary_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/Invoice_number"
+                android:id="@+id/tvOrderDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="5dp"
-                android:text="INV-0001"
-                android:textColor="@color/primary_color"
-                android:fontFamily="@font/sofia_pro"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/order_completed_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="30dp"
-                android:text="1 feb 23"
+                android:layout_marginTop="5dp"
+                android:text="1 Feb 2023"
                 android:textSize="17sp"
                 android:textStyle="bold" />
+
             <View
                 android:layout_width="1.8dp"
                 android:layout_height="@dimen/_18sp"
-                android:background="@color/color_text_secondary"
                 android:layout_marginStart="5sp"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp"
+                android:background="@color/color_text_secondary" />
+
             <TextView
-                android:id="@+id/order_completed_time"
+                android:id="@+id/tvOrderTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:text="09:45 PM"
                 android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <View
                 android:layout_width="370dp"
                 android:layout_height="2sp"
-                android:background="@color/color_card_dark"
                 android:layout_marginStart="5sp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:background="@color/color_card_dark" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:id="@+id/customer_name"
+                android:id="@+id/tvUserFullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:text="Rahul Kanjariya"
                 android:textSize="17sp"
                 android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/phone"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="120sp"
-                android:background="@drawable/ic_phone"/>
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_phone" />
+
             <TextView
-                android:id="@+id/phone_number"
+                android:id="@+id/tvUserPhoneNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:text="9265614292"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -119,87 +134,96 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/ivProductImage"
                 android:layout_width="70sp"
                 android:layout_height="70sp"
-                android:layout_marginTop="5sp"
                 android:layout_marginStart="5sp"
-                android:background="@drawable/ic_baseline_orders_24"/>
+                android:layout_marginTop="5sp"
+                android:background="@drawable/ic_baseline_orders_24" />
+
             <TextView
-                android:id="@+id/Product_name"
+                android:id="@+id/tvProductName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/overpass"
                 android:text="xyz x 10.0"
                 android:textSize="17sp"
-                android:fontFamily="@font/overpass"
                 android:textStyle="bold" />
+
             <ImageView
-                android:id="@+id/forward_arrow"
+                android:id="@+id/ivOrderDetailsButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="190sp"
-                android:background="@drawable/ic_arrow_forward"/>
+                android:background="@drawable/ic_arrow_forward" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5sp">
+            android:layout_marginTop="5sp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/Orders_cod"
                 android:layout_width="55dp"
                 android:layout_height="28dp"
-                android:layout_marginTop="6dp"
-                android:text="cod"
                 android:layout_marginStart="5sp"
-                android:backgroundTint="@color/blue_gray_900_26"
-                android:textAlignment="center"
+                android:layout_marginTop="6dp"
                 android:background="@drawable/btn_pill"
+                android:backgroundTint="@color/blue_gray_900_26"
+                android:text="cod"
+                android:textAlignment="center"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/order_Price"
+                android:id="@+id/tvOrderTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="@dimen/_225pxh"
+                android:layout_marginTop="5dp"
                 android:text="$ 180.00"
                 android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <View
                 android:layout_width="373dp"
                 android:layout_height="2sp"
-                android:background="@color/color_card_dark"
                 android:layout_marginStart="5sp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:background="@color/color_card_dark" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <ImageView
-            android:layout_width="24sp"
-            android:layout_height="24sp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="5sp"
-            android:background="@drawable/ic_check"/>
-        <TextView
-            android:id="@+id/OrderDelivered"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="5dp"
-            android:text="Order Delivered"
-            android:textSize="17sp"
-            android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="24sp"
+                android:layout_height="24sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5sp"
+                android:background="@drawable/ic_check" />
+
+            <TextView
+                android:id="@+id/tvOrderStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:text="Order Delivered"
+                android:textSize="17sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

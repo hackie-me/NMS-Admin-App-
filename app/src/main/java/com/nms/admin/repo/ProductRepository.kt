@@ -1,11 +1,11 @@
 package com.nms.admin.repo
 
 import android.content.Context
+import com.google.gson.Gson
 import com.nms.admin.models.ProductModel
 import com.nms.admin.utils.Helper
 import com.nms.admin.utils.api.ApiRequest
 import com.nms.admin.utils.api.ApiResponse
-import com.google.gson.Gson
 
 class ProductRepository {
     companion object {
@@ -14,6 +14,15 @@ class ProductRepository {
             return ApiRequest.getRequest(
                 ApiRequest.URL_GET_PRODUCTS,
                 Helper.fetchSharedPreference(context, "token")
+            )
+        }
+
+        // Function to fetch product by id
+        fun fetchById(id: String): ApiResponse {
+            val json = "{\"id\": \"$id\"}"
+            return ApiRequest.getRequest(
+                ApiRequest.URL_GET_PRODUCT_BY_ID,
+                json,
             )
         }
 

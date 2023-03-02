@@ -8,10 +8,8 @@ import okhttp3.RequestBody.Companion.toRequestBody
 class ApiRequest {
     companion object {
 
-
-        // TODO: Change this to your own server URL
-        // private const val BASE_URL = "http://10.1.51.154/nms/api/" // College IP
-        private const val BASE_URL = "http://192.168.1.2/nms/api/" // Home IP
+        private const val BASE_URL = "http://10.1.51.154/nms/api/" // College IP
+        // private const val BASE_URL = "http://192.168.1.2/nms/api/" // Home IP
         // private const val BASE_URL = "https://hardik.works/nms/api/" // Personal IP
 
         // Endpoints for Handling Admin
@@ -23,6 +21,7 @@ class ApiRequest {
 
         // Endpoints for Handling users
         const val URL_GET_USERS = "${BASE_URL}user/fetch.php"
+        const val URL_GET_USER_BY_ID = "${BASE_URL}user/fetch_by_userid.php"
         const val URL_ADD_USER = "${BASE_URL}user/insert.php"
         const val URL_UPDATE_USER = "${BASE_URL}user/update.php"
         const val URL_DELETE_USER = "${BASE_URL}user/delete.php"
@@ -35,15 +34,19 @@ class ApiRequest {
 
         // Endpoints for Handling products
         const val URL_GET_PRODUCTS = "${BASE_URL}product/fetch.php"
+        const val URL_GET_PRODUCT_BY_ID = "${BASE_URL}product/fetch_by_id.php"
         const val URL_ADD_PRODUCT = "${BASE_URL}product/insert.php"
         const val URL_UPDATE_PRODUCT = "${BASE_URL}product/update.php"
         const val URL_DELETE_PRODUCT = "${BASE_URL}product/delete.php"
 
         // Endpoints for Handling orders
-        const val URL_GET_ORDERS = "${BASE_URL}order/fetch.php"
+        const val URL_GET_ORDERS = "${BASE_URL}order/fetch_all_orders.php"
         const val URL_ADD_ORDER = "${BASE_URL}order/insert.php"
         const val URL_UPDATE_ORDER = "${BASE_URL}order/update.php"
         const val URL_DELETE_ORDER = "${BASE_URL}order/delete.php"
+
+        // Endpoints for Handling custom orders
+        const val URL_GET_CUSTOM_ORDERS = "${BASE_URL}custom_order/fetch.php"
 
         // Endpoints for Handling reviews
         const val URL_GET_REVIEWS = "${BASE_URL}review/fetch.php"

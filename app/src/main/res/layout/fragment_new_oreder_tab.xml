@@ -9,7 +9,7 @@
 
     <!-- If There are no categories -->
     <LinearLayout
-        android:id="@+id/empty_category_view"
+        android:id="@+id/empty_order_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -37,7 +37,7 @@
 
     <!-- If there are categories -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoryTabRecyclerView"
+        android:id="@+id/orderTabRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"

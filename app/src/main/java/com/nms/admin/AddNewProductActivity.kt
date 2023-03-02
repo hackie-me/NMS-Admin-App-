@@ -40,6 +40,7 @@ class AddNewProductActivity : AppCompatActivity() {
     private lateinit var btnAddProduct: Button
     private lateinit var btnSelectMultipleImages: Button
     private lateinit var btnSelectThumbnail: Button
+    var productId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +58,7 @@ class AddNewProductActivity : AppCompatActivity() {
             // Get the product from the intent
             val product = Gson().fromJson(Helper.fetchSharedPreference(this, "editProductModel"), ProductModel::class.java)
             // Set the product details to the views
+            productId = product.productId
             productName.setText(product.productName)
             productDescription.setText(product.productDescription)
             productPrice.setText(product.productPrice)
@@ -267,6 +269,7 @@ class AddNewProductActivity : AppCompatActivity() {
         val productStock = productStock.text.toString()
 
         val productModel = ProductModel(
+            productId = productId,
             productName = productName,
             productDescription = productDescription,
             productPrice = productPrice,
