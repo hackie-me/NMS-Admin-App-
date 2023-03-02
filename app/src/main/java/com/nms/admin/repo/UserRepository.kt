@@ -13,8 +13,9 @@ class UserRepository {
         }
 
         // Function to fetch user by id
-        fun fetchById(usersModel: UsersModel): ApiResponse {
-            return ApiRequest.getRequest(ApiRequest.URL_GET_USER_BY_ID, Gson().toJson(usersModel))
+        fun fetchById(uid: String): ApiResponse {
+            val json = "{ \"userid\": \"${uid}\" }"
+            return ApiRequest.getRequest(ApiRequest.URL_GET_USER_BY_ID + uid)
         }
     }
 }

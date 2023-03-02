@@ -21,7 +21,7 @@ class ApiRequest {
 
         // Endpoints for Handling users
         const val URL_GET_USERS = "${BASE_URL}user/fetch.php"
-        const val URL_GET_USER_BY_ID = "${BASE_URL}user/fetch_by_userid.php"
+        const val URL_GET_USER_BY_ID = "${BASE_URL}user/fetch_by_userid.php?userid="
         const val URL_ADD_USER = "${BASE_URL}user/insert.php"
         const val URL_UPDATE_USER = "${BASE_URL}user/update.php"
         const val URL_DELETE_USER = "${BASE_URL}user/delete.php"

@@ -63,12 +63,16 @@ class OrderAdapter(
 
         // Getting the user details
         CoroutineScope(Dispatchers.IO).launch {
-            val response = UserRepository.fetchById(UsersModel(userid = itemsViewModel.uid))
+            val response = UserRepository.fetchById(itemsViewModel.uid)
             if(response.code == 200){
                 val user = Gson().fromJson(response.data, UsersModel::class.java)
                 withContext(Dispatchers.Main){
                     holder.tvUserFullName.text = user.full_name
                     holder.tvUserPhoneNumber.text = user.phone
+                }
+            }else{
+                withContext(Dispatchers.Main){
+                    Helper.showToast(holder.itemView.context, "Error: ${response.code.toString()}")
                 }
             }
         }
