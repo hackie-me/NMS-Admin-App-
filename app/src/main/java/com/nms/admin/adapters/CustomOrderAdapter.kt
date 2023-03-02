@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.nms.admin.R
-import com.nms.admin.models.CategoryModel
-import com.nms.admin.models.OrderModel
-import com.nms.admin.models.ProductModel
-import com.nms.admin.models.UsersModel
+import com.nms.admin.models.*
 import com.nms.admin.repo.ProductRepository
 import com.nms.admin.repo.UserRepository
 import com.nms.admin.utils.Helper
@@ -25,10 +22,10 @@ import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
-class OrderAdapter(
-    private val order: Array<OrderModel>,
+class CustomOrderAdapter(
+    private val order: Array<CustomOrderModel>,
     private val clickListener: ClickListener,
-) : RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<CustomOrderAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -47,8 +44,6 @@ class OrderAdapter(
 
         holder.tvOrderId.text = "# ORD-${itemsViewModel.id}"
         holder.tvOrderStatus.text = itemsViewModel.status
-        holder.tvInvoiceNumber.text = "# INV-${itemsViewModel.pdf}"
-        holder.tvOrderTotal.text = "Rs. ${itemsViewModel.total}"
         val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         val outputDateFormat = SimpleDateFormat("d MMM yyyy", Locale.getDefault())
         val outputTimeFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
@@ -61,40 +56,18 @@ class OrderAdapter(
             .load("https://picsum.photos/200/300?random=${itemsViewModel.id}")
             .into(holder.ivProductImage)
 
-        // Getting the user details
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val response = UserRepository.fetchById(itemsViewModel.uid)
-//            if(response.code == 200){
-//                val user = Gson().fromJson(response.data, UsersModel::class.java)
-//                withContext(Dispatchers.Main){
-//                    holder.tvUserFullName.text = user.full_name
-//                    holder.tvUserPhoneNumber.text = user.phone
-//                }
-//            }else{
-//                withContext(Dispatchers.Main){
-//                    Helper.showToast(holder.itemView.context, "Error: ${response.code.toString()}")
-//                }
-//            }
-//        }
+        holder.tvUserFullName.text = itemsViewModel.name
+        holder.tvUserPhoneNumber.text = itemsViewModel.phone
+        holder.tvProductName.text = itemsViewModel.product_name
 
-        // Getting the product details
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = ProductRepository.fetchById(itemsViewModel.pid)
-            if(response.code == 200){
-                val product = Gson().fromJson(response.data, ProductModel::class.java)
-                withContext(Dispatchers.Main){
-                    holder.tvProductName.text = product.productName
-                }
-            }
-        }
     }
 
     // return the number of the items in the list
     override fun getItemCount(): Int = order.size
 
     interface ClickListener {
-        fun onInvoiceLinkClick(order: OrderModel)
-        fun onOrderDetailClick(order: OrderModel)
+        fun onInvoiceLinkClick(order: CustomOrderModel)
+        fun onOrderDetailClick(order: CustomOrderModel)
     }
 
 
@@ -113,7 +86,7 @@ class OrderAdapter(
         var llInvoiceLink: LinearLayout = ItemView.findViewById(R.id.llInvoiceNumberLink)
         var ivOrderDetailButton: ImageView = ItemView.findViewById(R.id.ivOrderDetailsButton)
 
-        fun bind(order: OrderModel, clickListener: ClickListener) {
+        fun bind(order: CustomOrderModel, clickListener: ClickListener) {
             llInvoiceLink.setOnClickListener {
                 clickListener.onInvoiceLinkClick(order)
             }

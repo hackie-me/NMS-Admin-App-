@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".fragments.TabCategoryFragment">
 
-    <!-- If There are no categories -->
+    <!-- If There are no orders -->
     <LinearLayout
         android:id="@+id/empty_order_view"
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
 
     </LinearLayout>
 
-    <!-- If there are categories -->
+    <!-- If there are orders -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/orderTabRecyclerView"
         android:layout_width="match_parent"
@@ -51,7 +51,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:spanCount="1" />
-
-    <!-- Add Category Button -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

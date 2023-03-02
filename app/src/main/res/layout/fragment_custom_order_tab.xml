@@ -7,9 +7,9 @@
     android:orientation="vertical"
     tools:context=".fragments.TabCategoryFragment">
 
-    <!-- If There are no categories -->
+    <!-- If There are no Custom orders -->
     <LinearLayout
-        android:id="@+id/empty_category_view"
+        android:id="@+id/empty_custom_order_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -24,22 +24,20 @@
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/empty_package" />
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:text="@string/no_custome_order_yet"
-            android:textAlignment="center"
-            android:textSize="16sp" />
-
+            android:text="No Orders Yet"
+            android:textFontWeight="900"
+            android:textSize="22sp" />
 
     </LinearLayout>
 
-    <!-- If there are categories -->
+    <!-- If there are Custom Orders -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoryTabRecyclerView"
+        android:id="@+id/customOrderTabRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"

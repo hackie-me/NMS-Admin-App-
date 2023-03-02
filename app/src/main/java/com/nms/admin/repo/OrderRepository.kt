@@ -12,7 +12,7 @@ class OrderRepository {
         }
 
         // Function to fetch All Custom Orders
-        fun fetchAllCustom(): ApiResponse {
+        fun fetchAllCustomOrders(): ApiResponse {
             return ApiRequest.getRequest(ApiRequest.URL_GET_CUSTOM_ORDERS)
         }
     }
