@@ -17,6 +17,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
 import java.util.*
 
 class AddNewProductActivity : AppCompatActivity() {
@@ -66,7 +67,10 @@ class AddNewProductActivity : AppCompatActivity() {
             productDiscount.setText(product.productDiscount)
             productStock.setText(product.productStock)
             productBrandName.setText(product.productBrandName)
-            productExpiryDate.setText(product.productExpiryDate)
+            // Format the date : 01-01-2021
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd")
+            val outputFormat = SimpleDateFormat("dd-MM-yyyy")
+            productExpiryDate.setText(outputFormat.format(inputFormat.parse(product.productExpiryDate)))
             productIngredients.setText(product.productIngredients)
 
             // Update the button text

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.gson.Gson
 import com.nms.admin.OrderDetailActivity
 import com.nms.admin.PDFViewerActivity
@@ -30,6 +31,17 @@ class TabOrderFragment : Fragment(), OrderAdapter.ClickListener {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_new_oreder_tab, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_order_tab)
+        swipeRefreshLayout.setOnRefreshListener {
+            // Refresh code here
+            swipeRefreshLayout.isRefreshing = true
+            fetchOrders(requireView())
+            swipeRefreshLayout.isRefreshing = false
+        }
     }
 
     override fun onResume() {

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.nms.admin.R
 import com.nms.admin.adapters.CategoryAdapter
 import com.nms.admin.models.CategoryModel
@@ -39,6 +40,15 @@ class TabCategoryFragment : Fragment(), CategoryAdapter.ClickListener {
             // Navigate to the AddNewCategoryActivity
             val intent = Intent(activity, com.nms.admin.AddNewCategoryActivity::class.java)
             startActivity(intent)
+        }
+
+        // Set the click listeners to swipe refresh layout
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_category_tab)
+        swipeRefreshLayout.setOnRefreshListener {
+            // Refresh code here
+            swipeRefreshLayout.isRefreshing = true
+            fetchCategories(requireView())
+            swipeRefreshLayout.isRefreshing = false
         }
     }
 

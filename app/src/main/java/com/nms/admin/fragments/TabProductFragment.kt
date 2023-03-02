@@ -10,14 +10,14 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.gson.Gson
 import com.nms.admin.AddNewProductActivity
 import com.nms.admin.R
 import com.nms.admin.adapters.ProductAdapter
 import com.nms.admin.models.ProductModel
 import com.nms.admin.repo.ProductRepository
 import com.nms.admin.utils.Helper
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,8 +40,7 @@ class TabProductFragment : Fragment(), ProductAdapter.ClickListener {
             val intent = Intent(activity, AddNewProductActivity::class.java)
             startActivity(intent)
         }
-        val swipeRefreshLayout =
-            view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_product_tab)
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_product_tab)
         swipeRefreshLayout.setOnRefreshListener {
             // Refresh code here
             swipeRefreshLayout.isRefreshing = true
@@ -118,26 +117,16 @@ class TabProductFragment : Fragment(), ProductAdapter.ClickListener {
                     try {
                         val response =
                             ProductRepository.delete(productModel.productId, requireContext())
-                        when (response.code) {
-                            200 -> {
-                                // Update the UI
+                        withContext(Dispatchers.Main) {
+                            if (response.code == 200) {
+                                Helper.showSnackBar(requireView(), "Product deleted successfully")
                                 fetchProducts(requireView())
-                            }
-                            401 -> {
-                                Helper.showSnackBar(requireView(), "Unauthorized")
-                            }
-                            404 -> {
-                                Helper.showSnackBar(requireView(), "Product not found")
-                            }
-                            500 -> {
-                                Helper.showSnackBar(requireView(), "Server Error")
-                            }
-                            else -> {
+                            } else {
                                 Helper.showSnackBar(requireView(), "Something went wrong")
                             }
                         }
                     } catch (ex: Exception) {
-                        Helper.showSnackBar(requireView(), "Error: $ex")
+                        Log.d("Error", ex.toString())
                     }
                 }
             }, {})
