@@ -138,6 +138,23 @@ class AddNewProductActivity : AppCompatActivity() {
         btnSelectMultipleImages = findViewById(R.id.btn_select_multiple_images)
         btnSelectThumbnail = findViewById(R.id.btn_select_thumbnail)
 
+
+        setDefaultValues()
+    }
+
+    // Function to set default values
+    private fun setDefaultValues() {
+        // Set the default values
+        productName.setText("Product ${(100 until 999).random()}")
+        productDescription.setText("Academics at Bard focus on giving students a strong scholarly foundation with our core curriculum, then encouraging them to explore individual academic interests. The College seeks to engender in every student a wide curiosity and love of learning. Close contact with scholars who are teachers but also active in their disciplines is a constant, and the level of academic discourse in the classroom is high.")
+        productBrandName.setText("Test Brand")
+        productExpiryDate.setText("01-01-2021")
+        productIngredients.setText("Test Ingredients")
+
+        productPrice.setText((100 until 999).random().toString())
+        productMrp.setText((100 until 999).random().toString())
+        productDiscount.setText((10 until 100).random().toString())
+        productStock.setText((1 until 999).random().toString())
     }
 
     //  Function to validate the data
@@ -236,7 +253,8 @@ class AddNewProductActivity : AppCompatActivity() {
                                 this@AddNewProductActivity,
                                 "Product Added Successfully"
                             )
-                            finish()
+                            // finish()
+                            setDefaultValues()
                         }
                         else -> {
                             Helper.showToast(
