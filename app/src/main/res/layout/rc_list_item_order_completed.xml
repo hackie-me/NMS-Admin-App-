@@ -26,7 +26,7 @@
                 android:layout_marginTop="5dp"
                 android:text="# ORD-0001"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
             <LinearLayout
                 android:id="@+id/llInvoiceNumberLink"
@@ -50,18 +50,18 @@
                     android:text="INV-0001"
                     android:textColor="@color/primary_color"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tvOrderDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:text="1 Feb 2023"
                 android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
             <View
                 android:layout_width="1.8dp"
@@ -76,9 +76,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:text="09:45 PM"
+                android:text="09:45PM"
                 android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
         </LinearLayout>
 
         <LinearLayout
@@ -112,7 +112,7 @@
                 android:id="@+id/phone"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
-                android:layout_marginStart="120sp"
+                android:layout_marginStart="100sp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/ic_phone" />
 
@@ -124,7 +124,7 @@
                 android:layout_marginTop="5dp"
                 android:text="9265614292"
                 android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
         </LinearLayout>
 
@@ -139,7 +139,7 @@
                 android:layout_height="70sp"
                 android:layout_marginStart="5sp"
                 android:layout_marginTop="5sp"
-                android:background="@drawable/ic_baseline_orders_24" />
+               />
 
             <TextView
                 android:id="@+id/tvProductName"

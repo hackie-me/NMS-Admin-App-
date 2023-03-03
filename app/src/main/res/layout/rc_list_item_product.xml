@@ -37,7 +37,7 @@
             android:layout_marginTop="@dimen/_10pxh">
             <TextView
                 android:id="@+id/product_name"
-                android:layout_width="240sp"
+                android:layout_width="200sp"
                 android:layout_height="wrap_content"
                 android:maxLength="50"
                 android:text="Product Name"

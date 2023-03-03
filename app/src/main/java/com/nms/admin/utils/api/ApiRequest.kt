@@ -8,9 +8,9 @@ import okhttp3.RequestBody.Companion.toRequestBody
 class ApiRequest {
     companion object {
 
-        // private const val BASE_URL = "http://10.1.51.154/nms/api/" // College IP
+//        private const val BASE_URL = "http://10.1.51.154/nms/api/" // College IP
         // private const val BASE_URL = "http://192.168.1.2/nms/api/" // Home IP
-        private const val BASE_URL = "https://hardik.works/nms/api/" // Personal IP
+         private const val BASE_URL = "https://hardik.works/nms/api/" // Personal IP
 
         // Endpoints for Handling Admin
         const val URL_REGISTER = "${BASE_URL}admin/register.php"

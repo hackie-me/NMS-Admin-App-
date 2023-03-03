@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="0"
+                    android:text="10"
                     android:textColor="@color/black"
                     android:textFontWeight="@integer/material_motion_duration_medium_1"
                     android:textSize="20sp"
@@ -86,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="0"
+                    android:text="3000"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -131,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="0"
+                    android:text="80"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -169,7 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="0"
+                    android:text="15"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -214,7 +214,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="0"
+                    android:text="10"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -252,7 +252,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="0"
+                    android:text="5"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
