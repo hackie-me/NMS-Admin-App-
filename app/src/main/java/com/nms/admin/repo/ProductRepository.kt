@@ -21,7 +21,7 @@ class ProductRepository {
         fun fetchById(id: String): ApiResponse {
             val json = "{\"id\": \"$id\"}"
             return ApiRequest.getRequest(
-                ApiRequest.URL_GET_PRODUCT_BY_ID,
+                ApiRequest.URL_GET_PRODUCT_BY_ID.plus("?id=$id"),
                 json,
             )
         }

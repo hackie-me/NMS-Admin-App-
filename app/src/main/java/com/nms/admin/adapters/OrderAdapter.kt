@@ -1,6 +1,5 @@
 package com.nms.admin.adapters
 
-import android.content.ClipData.Item
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.nms.admin.R
-import com.nms.admin.models.CategoryModel
 import com.nms.admin.models.OrderModel
 import com.nms.admin.models.ProductModel
 import com.nms.admin.models.UsersModel
@@ -62,27 +60,27 @@ class OrderAdapter(
             .into(holder.ivProductImage)
 
         // Getting the user details
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val response = UserRepository.fetchById(itemsViewModel.uid)
-//            if(response.code == 200){
-//                val user = Gson().fromJson(response.data, UsersModel::class.java)
-//                withContext(Dispatchers.Main){
-//                    holder.tvUserFullName.text = user.full_name
-//                    holder.tvUserPhoneNumber.text = user.phone
-//                }
-//            }else{
-//                withContext(Dispatchers.Main){
-//                    Helper.showToast(holder.itemView.context, "Error: ${response.code.toString()}")
-//                }
-//            }
-//        }
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = UserRepository.fetchById(itemsViewModel.uid)
+            if (response.code == 200) {
+                val user = Gson().fromJson(response.data, UsersModel::class.java)
+                withContext(Dispatchers.Main) {
+                    holder.tvUserFullName.text = user.full_name
+                    holder.tvUserPhoneNumber.text = user.phone
+                }
+            } else {
+                withContext(Dispatchers.Main) {
+                    Helper.showToast(holder.itemView.context, "Error: ${response.code.toString()}")
+                }
+            }
+        }
 
         // Getting the product details
         CoroutineScope(Dispatchers.IO).launch {
             val response = ProductRepository.fetchById(itemsViewModel.pid)
-            if(response.code == 200){
+            if (response.code == 200) {
                 val product = Gson().fromJson(response.data, ProductModel::class.java)
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     holder.tvProductName.text = product.productName
                 }
             }
@@ -105,7 +103,7 @@ class OrderAdapter(
         var tvOrderTime: TextView = ItemView.findViewById(R.id.tvOrderTime)
         var tvUserFullName: TextView = ItemView.findViewById(R.id.tvUserFullName)
         var tvUserPhoneNumber: TextView = ItemView.findViewById(R.id.tvUserPhoneNumber)
-        var tvProductName: TextView = ItemView.findViewById(R.id.tvProductName)
+        var tvProductName: TextView = ItemView.findViewById(R.id.tvOrderProductName)
         var ivProductImage: ImageView = ItemView.findViewById(R.id.ivProductImage)
         var tvOrderStatus: TextView = itemView.findViewById(R.id.tvOrderStatus)
         var tvOrderTotal: TextView = ItemView.findViewById(R.id.tvOrderTotal)

@@ -1,6 +1,5 @@
 package com.nms.admin.adapters
 
-import android.content.ClipData.Item
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,16 +8,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
 import com.nms.admin.R
-import com.nms.admin.models.*
-import com.nms.admin.repo.ProductRepository
-import com.nms.admin.repo.UserRepository
-import com.nms.admin.utils.Helper
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.nms.admin.models.CustomOrderModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -78,7 +69,7 @@ class CustomOrderAdapter(
         var tvOrderTime: TextView = ItemView.findViewById(R.id.tvOrderTime)
         var tvUserFullName: TextView = ItemView.findViewById(R.id.tvUserFullName)
         var tvUserPhoneNumber: TextView = ItemView.findViewById(R.id.tvUserPhoneNumber)
-        var tvProductName: TextView = ItemView.findViewById(R.id.tvProductName)
+        var tvProductName: TextView = ItemView.findViewById(R.id.tvOrderProductName)
         var ivProductImage: ImageView = ItemView.findViewById(R.id.ivProductImage)
         var tvOrderStatus: TextView = itemView.findViewById(R.id.tvOrderStatus)
         var tvOrderTotal: TextView = ItemView.findViewById(R.id.tvOrderTotal)
